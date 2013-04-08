@@ -1,1 +1,1 @@
-hg/kurkova/sandbox/miburr/dotfiles/vimrc
+../hg/kurkova/sandbox/miburr/dotfiles/vimrc
