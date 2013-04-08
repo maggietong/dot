@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rsync -xa --sparse --hard-links --specials --delete ~/git/mainline/ ~/git/mainline.backup/

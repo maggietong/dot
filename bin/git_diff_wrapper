@@ -1,0 +1,6 @@
+#!/bin/sh
+
+alias pager=cat
+unset PAGER
+
+vimdiff "$1" "$2"

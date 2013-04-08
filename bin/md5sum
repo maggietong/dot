@@ -1,0 +1,9 @@
+#!/bin/bash
+
+MD5SUM=$(which md5sum 2> /dev/null)
+
+if [ "${MD5SUM}x" != "x" ] ; then
+    "$MD5SUM" "$@"
+else
+    gmd5sum "$@"
+fi

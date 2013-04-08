@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PATH="/usr/local/share/python:/auto/ucs-platform-qa/tools/redhat_61/bin"
+
+pep8 --max-line-length=119 "$@"
