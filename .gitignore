@@ -2,3 +2,7 @@
 .DS_Store
 uxo.py
 .netrwhist
+*.swp
+virtualenv/bin/python
+*.pyc
+*.pyx
