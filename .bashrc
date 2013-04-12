@@ -3,7 +3,7 @@ export CURRENT_TREE=~/git/mainline
 
 #export QATOOLS="${QATOOLS-/net/savbu-plt-utl4/qali/tools/redhat_61}"
 #export QTDIR="${QATOOLS}/QtSDK/Desktop/Qt/4.8.0/gcc"
-export PYTHONPATH=$CURRENT_TREE:$CURRENT_TREE/qali/extern
+export PYTHONPATH=$CURRENT_TREE:$CURRENT_TREE/qali/extern:~/.python/site
 #export PATH=/usr/local/bin:$PATH
 #export PATH="$PYTHONPATH:$QATOOLS/bin:$PATH"
 #export PATH=~/bin:/usr/local/share/python:$PATH
@@ -15,6 +15,7 @@ alias xcopy=pbcopy
 
 alias switchqa='ssh -l switchqa savbu-plt-utl4'
 
+#export TERM=screen-256color
 
 export VIRTUAL_ENV_DISABLE_PROMPT='yes, please'
 
