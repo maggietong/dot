@@ -21,5 +21,4 @@ export VIRTUAL_ENV_DISABLE_PROMPT='yes, please'
 
 PATH=/usr/local/Cellar/python/2.7.3/Frameworks/Python.framework/Versions/2.7/bin:$PATH
 
-alias editor=vim
 alias pager=less
