@@ -1,3 +1,7 @@
 #!/bin/bash
 
-gsed "$@"
+if [ "$(uname)x" == "Darwinx" ] && [ -f /usr/local/bin/gsed ] ; then
+    /usr/local/bin/gsed "$@"
+else
+    /bin/sed "$@"
+fi

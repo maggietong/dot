@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ "x$1" == "x" ] ; then
-    /usr/bin/find .
+if [ "$(uname)x" == "Darwinx" ] && [ ! -e "$1" ] ; then
+    /usr/bin/find . "$@"
 else
     /usr/bin/find "$@"
 fi

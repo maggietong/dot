@@ -1,9 +1,7 @@
 #!/bin/bash
 
-MD5SUM=$(which md5sum 2> /dev/null)
-
-if [ "${MD5SUM}x" != "x" ] ; then
-    "$MD5SUM" "$@"
+if [ "$(uname)x" == "Darwinx" ] && [ -f /usr/local/bin/gmd5sum ] ; then
+    /usr/local/bin/gmd5sum "$@"
 else
-    gmd5sum "$@"
+    /usr/bin/md5sum "$@"
 fi
