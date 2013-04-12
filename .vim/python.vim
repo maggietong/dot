@@ -1,1 +1,0 @@
-../git/github/python.vim--Vasiliev/syntax/python.vim

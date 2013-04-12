@@ -1,1 +1,1 @@
-../../git/github/skittles_berry/colors/skittles_berry.vim
+../../../git/github/skittles_berry/colors/skittles_berry.vim

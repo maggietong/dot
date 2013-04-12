@@ -1,1 +1,0 @@
-../git/github/python_fn.vim/ftplugin/python/python_fn.vim
