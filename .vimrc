@@ -1,3 +1,7 @@
+" https://github.com/davidhalter/jedi-vim
+" https://github.com/klen/python-mode#default-keys
+
+
 """" Things to get in the habit of:
 "  g~iw -- toggle case of current word
 "  ]X -- navigate through python's blocks (for various 'X')
@@ -38,17 +42,45 @@
 " [z move to start of open fold.
 " ]z move to end of open fold.
 
-
-" set softtabstop=4
-" set shiftwidth=4
-" set tabstop=4
-" set expandtab
-" set textwidth=119
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set textwidth=119
 
 map <F5> :set spell! spelllang=en_us<CR>
 
-set incsearch
+set nocompatible
+set clipboard=unnamed
+set wildmenu
+set ttyfast
+set gdefault
+set encoding=utf-8 nobomb
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+if exists("&undodir")
+	set undodir=~/.vim/undo
+endif
+set modeline
+set modelines=4
+set cursorline
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set list
+
 set hlsearch
+set ignorecase
+set incsearch
+
+set laststatus=2
+set noerrorbells
+set nostartofline
+set ruler
+set shortmess=atI
+set showmode
+set title
+set showcmd
+set scrolloff=3
+
 
 " Rember location
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
@@ -79,3 +111,7 @@ let g:pymode_lint_write = 0
 let g:pymode_virtualenv = 1
 
 set nofoldenable
+
+autocmd filetype python source ~/.vim/mypystuff.vim
+autocmd filetype sh source ~/.vim/sh.vim
+autocmd BufRead,BufNewFile */test_*.py source ~/.vim/nose.vim
