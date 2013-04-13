@@ -51,7 +51,7 @@ set textwidth=119
 map <F5> :set spell! spelllang=en_us<CR>
 
 set nocompatible
-set clipboard=unnamed
+"set clipboard=unnamed
 set wildmenu
 set ttyfast
 set gdefault

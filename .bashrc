@@ -23,6 +23,6 @@ PATH=/usr/local/Cellar/python/2.7.3/Frameworks/Python.framework/Versions/2.7/bin
 
 alias pager=less
 
-if [ -e ~/dot/virtualenv ] ; then
-    . ~/dot/virtualenv/bin/activate
+if [ -e ~/virtualenv/27 ] ; then
+    . ~/virtualenv/27/bin/activate
 fi
