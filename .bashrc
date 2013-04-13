@@ -22,3 +22,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT='yes, please'
 PATH=/usr/local/Cellar/python/2.7.3/Frameworks/Python.framework/Versions/2.7/bin:$PATH
 
 alias pager=less
+
+if [ -e ~/dot/virtualenv ] ; then
+    . ~/dot/virtualenv/bin/activate
+fi

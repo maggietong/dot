@@ -39,47 +39,43 @@
 " ]z move to end of open fold.
 
 
-set nofoldenable
+" set softtabstop=4
+" set shiftwidth=4
+" set tabstop=4
+" set expandtab
+" set textwidth=119
 
-execute pathogen#infect()
-
-syntax on
-
-":highlight Comment ctermfg=green
-":highlight Constant ctermfg=white
-
-"colorscheme skittles_berry
-
-set modeline
-set ruler
-set softtabstop=4
-set shiftwidth=4
-set tabstop=4
-set expandtab
-set textwidth=119
-
-""set spell spelllang=en_us
 map <F5> :set spell! spelllang=en_us<CR>
-
-set formatoptions+=l
-
-filetype plugin indent on
-filetype plugin on
 
 set incsearch
 set hlsearch
 
-"if !exists("autocommands_loaded")
-"  let autocommands_loaded = 1
-"  autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python.vim
-"endif
-
 " Rember location
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-"autocmd filetype python source ~/.vim/python.vim
-"autocmd filetype python source ~/.vim/pythonloc.vim  " Show location in py file
-"autocmd filetype python source ~/.vim/mypystuff.vim  " My python stuff
-"autocmd filetype python source ~/.vim/python_fn.vim  " Enhanced navigation
 autocmd filetype sh source ~/.vim/sh.vim
 autocmd BufRead,BufNewFile */test_*.py source ~/.vim/nose.vim
+
+filetype off
+
+let g:pathogen_disabled = []
+"call add(g:pathogen_disabled, '')
+execute pathogen#infect('~/.vim_bundles/{}')
+
+call pathogen#helptags()
+
+filetype plugin indent on
+syntax on
+
+let g:virtualenv_loaded = 0
+let g:virtualenv_directory = '/Users/miburr/dot'
+let g:virtualenv_auto_activate = 1
+
+let g:pymode_lint_write = 0
+let g:pymode_run_key = 'E'
+let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
+let g:pymode_lint_onfly = 0
+let g:pymode_lint_write = 0
+let g:pymode_virtualenv = 1
+
+set nofoldenable
