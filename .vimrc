@@ -42,6 +42,7 @@
 " [z move to start of open fold.
 " ]z move to end of open fold.
 
+
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
@@ -115,3 +116,6 @@ set nofoldenable
 autocmd filetype python source ~/.vim/mypystuff.vim
 autocmd filetype sh source ~/.vim/sh.vim
 autocmd BufRead,BufNewFile */test_*.py source ~/.vim/nose.vim
+
+set switchbuf+=useopen  " This is supposed to re-use open windows. Nope.
+set wildmode=longest,list
