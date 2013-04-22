@@ -55,7 +55,7 @@ set nocompatible
 "set clipboard=unnamed
 set wildmenu
 set ttyfast
-set gdefault
+"set gdefault
 set encoding=utf-8 nobomb
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -116,6 +116,10 @@ set nofoldenable
 autocmd filetype python source ~/.vim/mypystuff.vim
 autocmd filetype sh source ~/.vim/sh.vim
 autocmd BufRead,BufNewFile */test_*.py source ~/.vim/nose.vim
+autocmd BufRead,BufNewFile */*_config.py source ~/.vim/glados.vim
 
 set switchbuf+=useopen  " This is supposed to re-use open windows. Nope.
 set wildmode=longest,list
+
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_

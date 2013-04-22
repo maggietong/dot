@@ -14,10 +14,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT='yes, please'
 
 alias pager=less
 
-if [ -e ~/virtualenv/27 ] ; then
-    . ~/virtualenv/27/bin/activate
-fi
-
 if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
     . $(brew --prefix)/share/bash-completion/bash_completion
 fi
@@ -27,7 +23,13 @@ if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ] ; then
     . /usr/local/etc/bash_completion.d/git-completion.bash
 fi
 
-export PATH=~/bin:/usr/local/bin:/usr/local/share/python:$PATH:$CURRENT_TREE/qali/bin
+if [ -e ~/virtualenv/27 ] ; then
+    . ~/virtualenv/27/bin/activate
+fi
 
 alias bb17-spam48='javaws http://10.193.197.2/ucsm/ucsm.jnlp'
 alias bb17-mam48='javaws http://10.193.197.4/ucsm/ucsm.jnlp'
+
+HISTFILESIZE=99999
+
+export PATH=~/bin:$PATH:$CURRENT_TREE/qali/bin
