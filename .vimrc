@@ -1,6 +1,10 @@
 " https://github.com/davidhalter/jedi-vim
 " https://github.com/klen/python-mode#default-keys
 
+"""" Navigation
+" ctrl-]  => jump to def
+" ctrl-t  => jump back from def
+
 
 """" Things to get in the habit of:
 "  g~iw -- toggle case of current word
@@ -115,11 +119,15 @@ set nofoldenable
 
 autocmd filetype python source ~/.vim/mypystuff.vim
 autocmd filetype sh source ~/.vim/sh.vim
-autocmd BufRead,BufNewFile */test_*.py source ~/.vim/nose.vim
-autocmd BufRead,BufNewFile */*_config.py source ~/.vim/glados.vim
+"autocmd BufRead,BufNewFile */test_*.py source ~/.vim/nose.vim
+"autocmd BufRead,BufNewFile */*_config.py source ~/.vim/glados.vim
 
 set switchbuf+=useopen  " This is supposed to re-use open windows. Nope.
 set wildmode=longest,list
 
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
+
+set tags=./tags,tags;$HOME
+"map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+"map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
