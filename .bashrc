@@ -1,4 +1,9 @@
 
+if [ -f ~/.current_tree ] ; then
+    source `cat ~/.current_tree`/qali/config/qa_bashrc
+fi
+
+
 # wget -O - -q http://http.us.debian.org/debian/pool/main/b/bash-completion/bash-completion_2.0-1_all.deb
 # ar x /tmp/f.deb
 
@@ -14,8 +19,10 @@ export VIRTUAL_ENV_DISABLE_PROMPT='yes, please'
 
 alias pager=less
 
-if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-    . $(brew --prefix)/share/bash-completion/bash_completion
+if which brew > /dev/null 2>&1 ; then
+    if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
+        . $(brew --prefix)/share/bash-completion/bash_completion
+    fi
 fi
 
 if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ] ; then
