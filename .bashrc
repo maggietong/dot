@@ -30,9 +30,6 @@ if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ] ; then
     . /usr/local/etc/bash_completion.d/git-completion.bash
 fi
 
-#if [ -e ~/virtualenv/27 ] ; then
-#    . ~/virtualenv/27/bin/activate
-#fi
 
 alias bb17-spam48='javaws http://10.193.197.2/ucsm/ucsm.jnlp'
 alias bb17-mam48='javaws http://10.193.197.4/ucsm/ucsm.jnlp'
@@ -42,3 +39,10 @@ HISTFILESIZE=99999
 export PATH=~/bin:$PATH:$CURRENT_TREE/qali/bin
 
 alias pep8='pep8 --max-line-length=119'
+
+if [ -e ~/virtualenv/shrapnel ] ; then
+    . ~/virtualenv/shrapnel/bin/activate
+fi
+
+alias editor=vim
+alias pager=less

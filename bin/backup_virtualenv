@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rsync -xa --sparse --hard-links --specials --delete ~/virtualenv/ ~/virtualenv.backup/
