@@ -40,8 +40,8 @@ export PATH=~/bin:$PATH:$CURRENT_TREE/qali/bin
 
 alias pep8='pep8 --max-line-length=119'
 
-if [ -e ~/virtualenv/shrapnel ] ; then
-    . ~/virtualenv/shrapnel/bin/activate
+if [ -e ~/virtualenv/current ] ; then
+    . ~/virtualenv/current/bin/activate
 fi
 
 alias editor=vim
