@@ -52,5 +52,13 @@ else
     echo "No git bash completion!!" >&2
 fi
 
+if [ -e ~/git/mainline ] ; then
+    cd ~/git/mainline
+else
+    echo "No git repo!!" >&2
+fi
+
 alias editor=vim
 alias pager=less
+
+
