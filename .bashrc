@@ -52,6 +52,12 @@ else
     echo "No git bash completion!!" >&2
 fi
 
+if [ -e ~/.bash.d/pip-completion.bash ] ; then
+    . ~/.bash.d/pip-completion.bash
+else
+    echo "No pip bash completion!!" >&2
+fi
+
 if [ -e ~/git/mainline ] ; then
     cd ~/git/mainline
 else
