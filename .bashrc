@@ -42,6 +42,14 @@ alias pep8='pep8 --max-line-length=119'
 
 if [ -e ~/virtualenv/current ] ; then
     . ~/virtualenv/current/bin/activate
+else
+    echo "No virtualenv!!" >&2
+fi
+
+if [ -e ~/.bash.d/git-completion.bash ] ; then
+    . ~/.bash.d/git-completion.bash
+else
+    echo "No git bash completion!!" >&2
 fi
 
 alias editor=vim
