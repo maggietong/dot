@@ -131,3 +131,5 @@ map <C-K> <C-W>k<C-W>_
 set tags=./tags,tags;$HOME
 "map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 "map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+colorscheme distinguished
