@@ -1,0 +1,23 @@
+%load_ext autoreload
+%autoreload 2
+
+try:
+    from qali.ucs.model import UCS
+except ImportError:
+    pass
+
+from pudb import set_trace
+
+class Rack(object):
+
+    def __init__(self):
+        self._spam48 = None
+
+    @property
+    def spam48(self):
+        if not self._spam48:
+            self._spam48 = UCS('bb17.spam48')
+        return self._spam48
+
+bb17 = Rack()
+
