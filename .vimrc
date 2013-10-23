@@ -118,6 +118,7 @@ let g:pymode_virtualenv = 1
 set nofoldenable
 
 autocmd filetype python source ~/.vim/mypystuff.vim
+autocmd filetype tcl source ~/.vim/mytclstuff.vim
 autocmd filetype sh source ~/.vim/sh.vim
 "autocmd BufRead,BufNewFile */test_*.py source ~/.vim/nose.vim
 "autocmd BufRead,BufNewFile */*_config.py source ~/.vim/glados.vim
