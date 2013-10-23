@@ -5,3 +5,5 @@ if [ "$(uname)x" == "Darwinx" ] && [ -f /usr/local/Cellar//macvim/7.3-66/MacVim.
 else
     /usr/bin/vim "$@"
 fi
+
+exit 0  # satisfy git. whatever

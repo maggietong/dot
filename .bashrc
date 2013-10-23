@@ -1,6 +1,7 @@
 
 if [ -f ~/.current_tree ] ; then
-    source `cat ~/.current_tree`/qali/config/qa_bashrc
+    #source `cat ~/.current_tree`/qali/config/qa_bashrc
+    true
 fi
 
 
