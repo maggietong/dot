@@ -23,11 +23,11 @@ nosetests \
             --with-coverage \
             --cover-erase \
             --cover-html \
-            --ignore-errors \
             --cover-inclusive \
             --cover-package=qali \
             --cover-html-dir=/tmp/cover \
             \
             $TESTS
 
+###  hmmm? -->          --ignore-errors \
 # --ignore-errors ignores coverage errors. NoSource, etc.

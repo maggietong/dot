@@ -68,4 +68,10 @@ fi
 alias editor=vim
 alias pager=less
 
-
+alias printbash='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=bash'
+alias printc='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=c'
+alias printpy='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=python'
+alias printpython='enscript -G -M Letter --color -DDuplex:true --pretty-print=python'
+alias printtcl='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=tcl'
+alias tabloidpy='enscript -G -M Tabloid --color -DDuplex:true --pretty-print=python'
+alias tabloidsh='enscript -G -M Tabloid --color -DDuplex:true --pretty-print=sh'
