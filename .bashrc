@@ -11,6 +11,8 @@ fi
 export MYUCS=bb17-spam48
 export CURRENT_TREE=~/git/mainline
 export PYTHONPATH=$CURRENT_TREE:$CURRENT_TREE/qali/extern:~/.python/site
+export PYTHONSTARTUP=~/.python/startup.py
+export PYTHONUSERBASE=~/.python
 
 alias xcopy=pbcopy
 
