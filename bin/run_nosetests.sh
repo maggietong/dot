@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-export QALI_CLUSTER='bb17.mam48'
-
 if [ $# -eq 0 ] ; then
     TESTS=$(find ~/git/mainline/qali -type d -name '*_tests')
 else

@@ -7,19 +7,19 @@ except ImportError:
 import traceback
 import sys
 
-sys.modules['s'] = sys.modules[__name__]
-
 st = debugger.set_trace
 
 def drop_debugger(type, value, tb):
   traceback.print_exception(type, value, tb)
   debugger.pm()
 
-sys.excepthook = drop_debugger
+try:
+    from qali import config
+    if config.mike.raise_debugger:
+        sys.excepthook = drop_debugger
+except ImportError:
+    pass
 
-
-frame = sys._getframe(0) # .f_back.f_locals.update(enums)
-frame.f_globals['foo'] = '999' * 100
 
 import site
 site.ENABLE_USER_SITE = True
