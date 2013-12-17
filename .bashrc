@@ -45,6 +45,15 @@ alias pep8='pep8 --max-line-length=119'
 
 if [ -e ~/virtualenv/current ] ; then
     . ~/virtualenv/current/bin/activate
+    F=$(python -c "import sys; print '{}/lib/python{}.{}/no-global-site-packages.txt'.format(sys.prefix, sys.version_info.major, sys.version_info.minor)")
+    if [ -e "$F" ] ; then
+        echo "" >&2
+        echo "  This file: $F" >&2
+        echo "  ...may prevent you from using a usercustomsite.py" >&2
+        echo "  You might consider getting rid of it. See 'site.py' for details." >&2
+        echo "" >&2
+    fi
+
 else
     echo "No virtualenv!!" >&2
 fi

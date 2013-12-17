@@ -5,5 +5,11 @@ MYNAME=$(basename "$0")
 if [ "$(uname)x" == "Darwinx" ] && [ -f /usr/local/opt/coreutils/libexec/gnubin/${MYNAME} ] ; then
     /usr/local/opt/coreutils/libexec/gnubin/${MYNAME} "$@"
 else
-    "/bin/${MYNAME}" "$@"
+    for THEPATH in /bin /usr/bin /usr/local/bin ; do
+        BIN="${THEPATH}/${MYNAME}"
+        if [ -e "${BIN}" ] ; then
+            break
+        fi
+    done
+    "${BIN}" "$@"
 fi

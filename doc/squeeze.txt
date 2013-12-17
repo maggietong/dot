@@ -1,0 +1,112 @@
+"""
+Some stuff that I barely manged to recall after tweaking this to get it to work on a bare-bones
+
+    Distributor ID:	Debian
+    Description:	Debian GNU/Linux 6.0.8 (squeeze)
+    Release:	6.0.8
+    Codename:	squeeze
+
+...system
+"""
+
+
+ aptitude --purge-unused install vim-nox vim_
+
+ pip install autopep8 ipython jedi mccabe nose nosehtmloutput npyscreen paramiko pep257 pep8 pudb pyflakes scapy urwid
+ pip install --pre -d /tmp/xxxx/ --no-install scapy
+ pip install --pre npyscreen
+
+  ~$ cd ~/.vim/bundle/
+  ~$ git clone https://github.com/gmarik/vundle.git
+  ~$ cd vundle
+  ~$ vim +BundleInstall +qall
+  ~$ ./install.sh
+
+build-essential
+cmake
+cmake-data
+cpp-4.8
+g++
+gcc
+gcc-4.8
+gcc-4.8-base
+libarchive13
+libarchive-extract-perl
+libasan0
+libatomic1
+libc6-dbg
+libcloog-isl4
+libcurl3
+libdb5.1
+libevent-core-2.0-5
+libevent-pthreads-2.0-5
+libffi6
+libgcc-4.8-dev
+libisl10
+libitm1
+libjpeg8
+liblog-message-simple-perl
+liblua5.1-0
+liblzo2-2
+libmodule-pluggable-perl
+libmpc3
+libnettle4
+libp11-kit0
+libperl5.18
+libpthread-workqueue0
+libpthread-workqueue-dev
+libpython2.7
+libpython2.7-dev
+libpython2.7-minimal
+libpython2.7-stdlib
+libpython-all-dev
+libpython-dev
+libpython-stdlib
+libquadmath0
+librtmp0
+libruby1.9.1
+libssh2-1
+libssl1.0.0
+libstdc++-4.8-dev
+libterm-ui-perl
+libtext-soundex-perl
+libtinfo5
+libtsan0
+libyaml-tiny-perl
+python2.7
+python2.7-dev
+python2.7-minimal
+python-all
+python-all-dev
+python-dev
+python-jedi
+ruby
+ruby1.9.1
+vim-nox
+
+
+
+ii  vim-common                          2:7.4.052-1                  amd64        Vi IMproved - Common files
+ii  vim-nox                             2:7.4.052-1                  amd64        Vi IMproved - enhanced vi editor - with scripting languages support
+ii  vim-runtime                         2:7.4.052-1                  all          Vi IMproved - Runtime files
+ii  libpython-all-dev:amd64             2.7.5-5                      amd64        package depending on all supported Python development packages
+ii  libpython-dev:amd64                 2.7.5-5                      amd64        header files and a static library for Python (default)
+ii  libpython-stdlib:amd64              2.7.5-5                      amd64        interactive high-level object-oriented language (default python version)
+ii  libpython2.7:amd64                  2.7.6-3                      amd64        Shared Python runtime library (version 2.7)
+ii  libpython2.7-dev:amd64              2.7.6-3                      amd64        Header files and a static library for Python (v2.7)
+ii  libpython2.7-minimal:amd64          2.7.6-3                      amd64        Minimal subset of the Python language (version 2.7)
+ii  libpython2.7-stdlib:amd64           2.7.6-3                      amd64        Interactive high-level object-oriented language (standard library, version 2.7)
+
+ii  python                              2.7.5-5                      amd64        interactive high-level object-oriented language (default version)
+ii  python-all                          2.7.5-5                      amd64        package depending on all supported Python runtime versions
+ii  python-all-dev                      2.7.5-5                      amd64        package depending on all supported Python development packages
+ii  python-dev                          2.7.5-5                      amd64        header files and a static library for Python (default)
+ii  python-minimal                      2.7.5-5                      amd64        minimal subset of the Python language (default version)
+ii  python-pip                          0.7.2-1                      all          alternative Python package installer
+ii  python-pkg-resources                1.4.2-1                      all          Package Discovery and Resource Access using pkg_resources
+ii  python-setuptools                   1.4.2-1                      all          Python Distutils Enhancements (setuptools compatibility)
+ii  python-support                      1.0.15                       all          automated rebuilding support for Python modules
+ii  python-virtualenv                   1.10.1-1                     all          Python virtual environment creator
+ii  python2.7                           2.7.6-3                      amd64        Interactive high-level object-oriented language (version 2.7)
+ii  python2.7-dev                       2.7.6-3                      amd64        Header files and a static library for Python (v2.7)
+ii  python2.7-minimal                   2.7.6-3                      amd64        Minimal subset of the Python language (version 2.7)

@@ -112,6 +112,14 @@ Bundle 'ynkdir/vim-vimlparser'
 Bundle 'tpope/vim-fugitive'
 verbose map <unique> ,gd :Gdiff<CR>
 
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffWithSaved call s:DiffWithSaved()
 
 function! CleanWhilespace()
     :%s/\s\+$//e
@@ -124,10 +132,10 @@ verbose map <C-H> <C-W>h<C-W>_
 verbose map <C-J> <C-W>j<C-W>_
 verbose map <C-K> <C-W>k<C-W>_
 verbose map <C-L> <C-W>l<C-W>_
-verbose map <F5> :set spell! spelllang=en_us<CR>
+verbose map <F5> :set spell! spelllang=en_us<CRs ~/.vimrc<CR>>
 verbose map <buffer> <F3> :source ~/.vimrc <CR>
 verbose nmap <buffer> <F1> :!less ~/.vimrc<CR>
-
+verbose nmap <buffer> <F9> :PymodeLintAuto <CR>
 """" PymodeLint
 
 

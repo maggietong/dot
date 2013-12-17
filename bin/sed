@@ -3,5 +3,11 @@
 if [ "$(uname)x" == "Darwinx" ] && [ -f /usr/local/bin/gsed ] ; then
     /usr/local/bin/gsed "$@"
 else
-    /bin/sed "$@"
+    for THEPATH in /bin /usr/bin /usr/local/bin ; do
+        BIN="${THEPATH}/sed"
+        if [ -e "${BIN}" ] ; then
+            break
+        fi
+    done
+    "${BIN}" "$@"
 fi
