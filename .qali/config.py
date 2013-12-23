@@ -6,16 +6,17 @@ STANDARD = 2
 PDBG = 3
 STANDARDDBG = 4
 
-#mode = PFAST
-mode = PDBG
+mode = PFAST
+#mode = PDBG
 #mode = THREAD
 #mode = STANDARD
 #mode = STANDARDDBG
-log_level = 'DEBUG'
-#log_level = 'ERROR'
+#log_level = 'DEBUG'
+log_level = 'ERROR'
 
 ucs.spy = False
-iom.preferred_transport = CONSOLE_TRANSPORT
+#iom.preferred_transport = CONSOLE_TRANSPORT
+iom.preferred_transport = complex()
 ucs.identifier = 'bb17.spam48'
 ucs.spyfile = sys.stderr
 os.environ['QALI_CLUSTER'] = ucs.identifier
@@ -43,7 +44,7 @@ elif mode == STANDARDDBG:
 
 
 if qali_global.threading:
-    from qali.thread import fake_logging
+    from qali.thread.main import fake_logging
     fake_logging.min_repeat_interval = 0
     fake_logging.no_repeats = False
     fake_logging.level = log_level
@@ -54,5 +55,10 @@ else:
     logger.setLevel(log_level)
     logger.addHandler(console)
 
-mike = ConfigSpace('mike')
-mike.raise_debugger = not qali_global.threading
+glados.output_root = '/tmp/xig'
+
+try:
+    mike = ConfigSpace('mike')
+except NameError:
+    mike = NameSpace('mike')
+mike.raise_debugger = True

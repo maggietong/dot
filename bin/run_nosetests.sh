@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+echo xxxxx
+set +x
 
 if [ $# -eq 0 ] ; then
     TESTS=$(find ~/git/mainline/qali -type d -name '*_tests')
@@ -11,6 +13,7 @@ mkdir /tmp/cover
 rm -f /tmp/n.html
 
 cd ~/git/mainline
+echo xxxxx
 nosetests \
             \
             --with-id \

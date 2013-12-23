@@ -1,5 +1,21 @@
+# -*- Mode: python; encoding: UTF-8;tab-width: 4; indent-tabs-mode:nil; -*- vim: ai ts=4 sts=4 et sw=4 ft=python
 %load_ext autoreload
 %autoreload 2
+
+import sys
+import os
+import re
+
+import logging
+logging.setLoggerClass(logging.Logger)
+console = logging.StreamHandler()
+logger = logging.getLogger('ipython')
+logger.setLevel('DEBUG')
+logger.addHandler(console)
+
+import sys
+sys.path.insert(1, '/Users/miburr/japaneezu')
+import japaneezu
 
 try:
     from qali.ucs.model import UCS
