@@ -1,7 +1,20 @@
 " Wanted:
 "  * a much easier way of doing visual replace
 "  * a super easy way to in/undent python blocks. (or... have a command that selects the current inner-most block, then the next-outer, etc, etc. and cycles through them. It would then be possible to use >> / <<)
+"  * a way to dynamically generate help (F1), preferabley w/ pythom
+"  * shortcut for restarting that stupid server
 
+"   ]t      -- Jump to beginning of block
+"   ]e      -- Jump to end of block
+"   ]v      -- Select (Visual Line Mode) block
+"   ]<      -- Shift block to left
+"   ]>      -- Shift block to right
+"   ]#      -- Comment selection
+"   ]u      -- Uncomment selection
+"   ]c      -- Select current/previous class
+"   ]d      -- Select current/previous function
+"   ]<up>   -- Jump to previous line with the same/lower indentation
+"   ]<down> -- Jump to next line with the same/lower indentation
 
 set softtabstop=4
 set shiftwidth=4
@@ -51,6 +64,8 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'klen/python-mode'
+Bundle 'jsatt/python_fn'
+Bundle 'vim-scripts/python_match.vim'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 
@@ -95,7 +110,10 @@ map <buffer> <F9> :w<CR>:!pep8 % <CR>
 map <buffer> <S-e> :w<CR>:!/usr/bin/env python -u % <CR>
 map <buffer> <S-t> :w<CR>:!/usr/bin/env python -m pudb.run % <CR><CR>
 
-nmap <buffer> <F1> :!less ~/.vim/maps.vim<CR>
+nmap <buffer> <F1> :!less ~/.vimrc<CR>
+nmap <buffer> <C-S-y> :YcmRestartServer<CR>
+
+
 
 
 

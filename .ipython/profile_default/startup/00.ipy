@@ -22,8 +22,6 @@ try:
 except ImportError:
     pass
 
-from pudb import set_trace
-
 class Rack(object):
 
     def __init__(self):
