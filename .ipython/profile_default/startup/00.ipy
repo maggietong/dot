@@ -14,8 +14,8 @@ logger.setLevel('DEBUG')
 logger.addHandler(console)
 
 import sys
-sys.path.insert(1, '/Users/miburr/japaneezu')
-import japaneezu
+
+if __name__ != '__main__': sys.exit()
 
 try:
     from qali.ucs.model import UCS

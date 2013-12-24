@@ -1,10 +1,15 @@
 #!/bin/bash
 
-if [ "$(uname)x" == "Darwinx" ] && [ -f /usr/local/Cellar//macvim/7.3-66/MacVim.app/Contents/MacOS/Vim ] ; then
-    /usr/local/Cellar//macvim/7.3-66/MacVim.app/Contents/MacOS/Vim "$@"
-    #/usr/local/bin/mvim
-else
-    /usr/bin/vim "$@"
-fi
+mkdir -p ~/.vim/logs
+LOGFILE=~/.vim/logs/$(date +%a).log
 
-exit 0  # satisfy git. whatever
+# 15 is the min to include line numbers for all parse *.vim files
+SPECIAL_OPTS="-V15${LOGFILE}"
+
+rm -f $LOGFILE
+
+if [ -e /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim ] ; then
+    /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim ${SPECIAL_OPTS} "$@"
+else
+    /usr/bin/vim ${SPECIAL_OPTS} "$@"
+fi
