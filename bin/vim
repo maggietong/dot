@@ -2,6 +2,7 @@
 
 if [ "$(uname)x" == "Darwinx" ] && [ -f /usr/local/Cellar//macvim/7.3-66/MacVim.app/Contents/MacOS/Vim ] ; then
     /usr/local/Cellar//macvim/7.3-66/MacVim.app/Contents/MacOS/Vim "$@"
+    #/usr/local/bin/mvim
 else
     /usr/bin/vim "$@"
 fi
