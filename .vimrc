@@ -19,8 +19,7 @@
 set nocompatible
 
 filetype off
-filetype plugin on
-filetype indent off
+filetype plugin indent on
 
 set softtabstop=4
 set shiftwidth=4
@@ -65,21 +64,31 @@ Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
 let g:ycm_collect_identifiers_from_tags_files = 0
 let g:ycm_cache_omnifunc = 0
+verbose nmap <buffer> <C-M-y> :YcmRestartServer<CR>
 
 set nofoldenable
 Bundle 'jsatt/python_fn'
 Bundle 'vim-scripts/python_match.vim'
 Bundle 'pythonhelper'
 Bundle 'klen/python-mode'
+
 let g:pymode = 1
-let g:pymode_breakpoint = 1
+"let g:pymode_debug = 0
+"let g:pymode_doc' = 1
+"let g:pymode_doc_bind = 'K'
+let g:pymode_lint_message = 0
+let g:pymode_lint_cwindow = 1
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257']
 let g:pymode_lint_write = 0
+let g:pymode_lint_on_fly = 0
+"let g:pymode_lint_ignore = 'E501,W'
+let g:pymode_rope = 0
+let g:pymode_breakpoint = 1
+let g:pymode_trim_whitespaces = 1
 let g:pymode_run_key = 'E'
-"let g:pymode_lint_checker = "pyflakes,pep8,mccabe"
 "let g:pymode_virtualenv = 1
 let g:pymode_folding = 0
-"let g:pymode_indent = []
-let g:pymode_lint_on_fly = 0
+let g:pymode_indent = 1
 let g:pymode_motion = 1
 let g:pymode_options = 1
 let g:pymode_quickfix_maxheight = 6
@@ -100,11 +109,11 @@ Bundle 'syngan/vim-vimlint'
 Bundle 'ynkdir/vim-vimlparser'
 "Bundle 'jaredly/vim-debug'
 
-"Bundle 'tpope/vim-fugitive'
-verbose map <buffer> <A-d> :Gdiff<CR>
-verbose nmap <buffer> <C-M-y> :YcmRestartServer<CR>
+Bundle 'tpope/vim-fugitive'
+verbose map <unique> ,gd :Gdiff<CR>
 
-function CleanWhilespace()
+
+function! CleanWhilespace()
     :%s/\s\+$//e
 endfunction
 autocmd BufWritePre * call CleanWhilespace()
@@ -119,9 +128,41 @@ verbose map <F5> :set spell! spelllang=en_us<CR>
 verbose map <buffer> <F3> :source ~/.vimrc <CR>
 verbose nmap <buffer> <F1> :!less ~/.vimrc<CR>
 
+"""" PymodeLint
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""  :buffers[!]					*:buffers* *:ls*
+
+""""  :[N]bn[ext][!] [N]					*:bn* *:bnext* *E87*
+""""  		Go to [N]th next buffer in buffer list.  [N] defaults to one.
+""""  		Wraps around the end of the buffer list.
+
+""""  :[N]b[uffer][!] [N]			*:b* *:bu* *:buf* *:buffer* *E86*
+""""  		Edit buffer [N] from the buffer list.  If [N] is not given,
+""""  		the current buffer remains being edited.  See |:buffer-!| for
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""  :[count]tabnew [++opt] [+cmd] {file}
+""""  		Open a new tab page and edit {file}, like with |:edit|.
+""""  		For [count] see |:tab| below.
+""""  :tabc[lose][!]	Close current tab page.
+""""  :tabo[nly][!]	Close all other tab pages.
+""""  :tabn[ext]				*:tabn* *:tabnext* *gt*
+""""  :tabp[revious]				*:tabp* *:tabprevious* *gT* *:tabN*
+""""  :tabfir[st]	Go to the first tab page.
+""""  :tabl[ast]	Go to the last tab page.
+""""  :tabd[o] {cmd}	Execute {cmd} in each tab page.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-"function LastWinWasQuickfix()
+"function! LastWinWasQuickfix()
 "    if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"
 "        return 1
 "    endif

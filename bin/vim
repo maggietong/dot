@@ -1,15 +1,45 @@
 #!/bin/bash
+set +x
+MYNAME=$(basename "$0")
+
+case "$MYNAME" in
+
+    vim)
+        MODE_OPTS=""
+        ;;
+
+    editor)
+        MODE_OPTS=""
+        ;;
+
+    vi)
+        MODE_OPTS=""
+        ;;
+
+    view)
+        MODE_OPTS="-R"
+        ;;
+
+    vimdiff)
+        MODE_OPTS="-d"
+        ;;
+
+    *)
+        echo "I don't know what to think when you call me '${MYNAME}'" >&2
+        exit 1
+        ;;
+esac
 
 mkdir -p ~/.vim/logs
 LOGFILE=~/.vim/logs/$(date +%a).log
 
 # 15 is the min to include line numbers for all parse *.vim files
 SPECIAL_OPTS="-V15${LOGFILE}"
-
 rm -f $LOGFILE
 
+
 if [ -e /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim ] ; then
-    /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim ${SPECIAL_OPTS} "$@"
+    /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim ${SPECIAL_OPTS} ${MODE_OPTS} "$@"
 else
-    /usr/bin/vim ${SPECIAL_OPTS} "$@"
+    /usr/bin/vim ${SPECIAL_OPTS} ${MODE_OPTS} "$@"
 fi
