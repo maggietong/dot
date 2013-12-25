@@ -1,0 +1,13 @@
+
+https://github.com/alonho/pytrace
+http://code.google.com/p/pydbgr/
+http://www.gnu.org/software/ddd/
+
+http://lxr.sourceforge.net/
+
+
+/usr/local/bin/ctags --recurse --python-kinds=-i --exclude='*/extern/*' -o ~/ctags ~/git/mainline
+
+http://www.grok2.com/code_comprehension.html
+
+CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib

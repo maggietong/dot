@@ -12,3 +12,6 @@ virtualenv/bin/python
 .ipython/profile_default/startup/README
 .config/pudb/saved-breakpoints*
 .vim/logs/*.log
+.ipython/profile_default/log
+.ipython/profile_default/pid
+.vim/ftplugin/*.vim

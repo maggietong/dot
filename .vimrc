@@ -53,13 +53,24 @@ set scrolloff=3
 set switchbuf+=useopen  " This is supposed to re-use open windows. Nope.
 set wildmode=longest,list
 "set tags=./tags,tags;$HOME
-colorscheme advantage
 
 syntax on
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
+"http://cscope.sourceforge.net/cscope_vim_tutorial.html
+"https://github.com/michaeljsmith/vim-indent-object
+"https://github.com/vim-scripts/bufexplorer.zip
+"Bundle 'tpope/vim-repeat'
+"Bundle 'tpope/vim-commentary'
+"Bundle 'taglist'
+Bundle 'vim-scripts/taglist.vim'
+
+"Bundle 'vim-scripts/ScrollColors'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'qualiabyte/vim-colorstepper'
+Bundle 'Rykka/riv.vim'
 
 Bundle 'Valloric/YouCompleteMe'
 let g:ycm_collect_identifiers_from_tags_files = 0
@@ -99,10 +110,6 @@ let g:pymode_syntax_all = 1
 let g:pymode_warnings = 1
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_unmodified = 0
-verbose map <buffer> <F8> :w<CR>:!pyflakes % <CR>
-verbose map <buffer> <F9> :w<CR>:!pep8 % <CR>
-verbose map <buffer> <S-e> :w<CR>:!/usr/bin/env python -u % <CR>
-verbose map <buffer> <S-t> :w<CR>:!/usr/bin/env python -m pudb.run % <CR><CR>
 "Bundle 'scrooloose/syntastic'
 
 Bundle 'syngan/vim-vimlint'
@@ -124,7 +131,8 @@ com! DiffWithSaved call s:DiffWithSaved()
 function! CleanWhilespace()
     :%s/\s\+$//e
 endfunction
-autocmd BufWritePre * call CleanWhilespace()
+com! BufWritePre * call CleanWhilespace()
+
 
 verbose map <buffer> <C-P> :set paste <CR>
 verbose map <buffer> <C-A> :set nopaste <CR>
@@ -135,7 +143,6 @@ verbose map <C-L> <C-W>l<C-W>_
 verbose map <F5> :set spell! spelllang=en_us<CRs ~/.vimrc<CR>>
 verbose map <buffer> <F3> :source ~/.vimrc <CR>
 verbose nmap <buffer> <F1> :!less ~/.vimrc<CR>
-verbose nmap <buffer> <F9> :PymodeLintAuto <CR>
 """" PymodeLint
 
 
@@ -203,3 +210,7 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 "  :autocmd BufNewFile  *.c	0r ~/vim/skeleton.c
 "  :autocmd BufNewFile  *.h	0r ~/vim/skeleton.h
 "  :autocmd BufNewFile  *.java	0r ~/vim/skeleton.java
+colorscheme BlackSea
+
+
+"verbose nmap <buffer> <F9> :PymodeLintAuto <CR>

@@ -31,7 +31,7 @@ case "$MYNAME" in
 esac
 
 mkdir -p ~/.vim/logs
-LOGFILE=~/.vim/logs/$(date +%a).log
+LOGFILE=~/.vim/logs/$(date +%H).log
 
 # 15 is the min to include line numbers for all parse *.vim files
 SPECIAL_OPTS="-V15${LOGFILE}"
