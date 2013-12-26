@@ -10,17 +10,11 @@ fi
 
 export MYUCS=bb17-spam48
 export CURRENT_TREE=~/git/mainline
-export PYTHONUSERBASE=~/.python
-export PYTHONPATH=$CURRENT_TREE:$CURRENT_TREE/qali/extern:$PYTHONUSERBASE
-export PYTHONSTARTUP=$PYTHONUSERBASE/startup.py
+#export PYTHONUSERBASE=~/.python
+#export PYTHONPATH=$CURRENT_TREE:$CURRENT_TREE/qali/extern:$PYTHONUSERBASE
+#export PYTHONSTARTUP=$PYTHONUSERBASE/startup.py
 
-alias xcopy=pbcopy
-
-alias switchqa='ssh -l switchqa savbu-plt-utl4'
-
-export VIRTUAL_ENV_DISABLE_PROMPT='yes, please'
-
-alias pager=less
+export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 if which brew > /dev/null 2>&1 ; then
     if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
@@ -29,19 +23,12 @@ if which brew > /dev/null 2>&1 ; then
 fi
 
 if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ] ; then
+    # https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
     # FIXME: Why is it not enough just to put this in bash_compl.d ?
     . /usr/local/etc/bash_completion.d/git-completion.bash
 fi
 
-
-alias bb17-spam48='javaws http://10.193.197.2/ucsm/ucsm.jnlp'
-alias bb17-mam48='javaws http://10.193.197.4/ucsm/ucsm.jnlp'
-
 HISTFILESIZE=99999
-
-export PATH=~/bin:$PATH:$CURRENT_TREE/qali/bin
-
-alias pep8='pep8 --max-line-length=119'
 
 if [ -e ~/virtualenv/current ] ; then
     . ~/virtualenv/current/bin/activate
@@ -53,31 +40,17 @@ if [ -e ~/virtualenv/current ] ; then
         echo "  You might consider getting rid of it. See 'site.py' for details." >&2
         echo "" >&2
     fi
-
-else
-    echo "No virtualenv!!" >&2
 fi
 
-if [ -e ~/.bash.d/git-completion.bash ] ; then
-    . ~/.bash.d/git-completion.bash
-else
-    echo "No git bash completion!!" >&2
-fi
-
-if [ -e ~/.bash.d/pip-completion.bash ] ; then
-    . ~/.bash.d/pip-completion.bash
-else
-    echo "No pip bash completion!!" >&2
+if [ -d ~/.bash.d ] ; then
+    for f in ~/.bash.d/*.bash ; do
+        . $f
+    done
 fi
 
 if [ -e ~/git/mainline ] ; then
     cd ~/git/mainline
-else
-    echo "No git repo!!" >&2
 fi
-
-alias editor=vim
-alias pager=less
 
 alias printbash='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=bash'
 alias printc='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=c'
@@ -86,3 +59,8 @@ alias printpython='enscript -G -M Letter --color -DDuplex:true --pretty-print=py
 alias printtcl='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=tcl'
 alias tabloidpy='enscript -G -M Tabloid --color -DDuplex:true --pretty-print=python'
 alias tabloidsh='enscript -G -M Tabloid --color -DDuplex:true --pretty-print=sh'
+alias xcopy=pbcopy
+
+if [ -d ~/bin ] ; then
+    PATH=~/bin:"$PATH"
+fi

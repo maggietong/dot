@@ -31,15 +31,16 @@ case "$MYNAME" in
 esac
 
 mkdir -p ~/.vim/logs
-LOGFILE=~/.vim/logs/$(date +%H).log
+LOGFILE=~/.vim/logs/$(date +%s).log  # I don't have time to mess with this. so...don't run out of disk space.
 
 # 15 is the min to include line numbers for all parse *.vim files
 SPECIAL_OPTS="-V15${LOGFILE}"
 rm -f $LOGFILE
 
+LOCAL_VIM="/usr/local/Cellar/vim/7.4.052/bin/vim"
 
-if [ -e /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim ] ; then
-    /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim ${SPECIAL_OPTS} ${MODE_OPTS} "$@"
+if [ -e "${LOCAL_VIM}" ] ; then
+    "${LOCAL_VIM}" ${SPECIAL_OPTS} ${MODE_OPTS} "$@"
 else
     /usr/bin/vim ${SPECIAL_OPTS} ${MODE_OPTS} "$@"
 fi

@@ -689,7 +689,7 @@ def main():
     aliasmbcs()
     setencoding()
     execsitecustomize()
-    if ENABLE_USER_SITE:
+    if False and  ENABLE_USER_SITE:
         execusercustomize()
     # Remove sys.setdefaultencoding() so that users cannot change the
     # encoding after initialization.  The test for presence is needed when

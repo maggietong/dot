@@ -11,3 +11,21 @@ http://lxr.sourceforge.net/
 http://www.grok2.com/code_comprehension.html
 
 CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib
+
+ctags --tag-relative -Rf.git/tags --exclude=.git --languages=-javascript,sql
+
+https://github.com/richo/git_template/blob/master/hooks/ctags
+
+ctags --tag-relative -R -f .git/tags.$$ --exclude=.git --languages=-sql,-css
+https://github.com/igetgames/dotfiles/blob/master/git_template/hooks/ctags
+
+
+share/doc/python3.3/examples/Tools/scripts/ptags.py
+
+        "To run ctags manually execute the following command in a terminal:
+        "        ctags -f - --format=2 --excmd=pattern --extra= --fields=nksaSmt myfile
+        "If you set the |g:tagbar_ctags_bin| variable you probably have to use the same
+        "value here instead of simply "ctags".
+
+pkgutil
+https://github.com/nvie/vim_bridge
