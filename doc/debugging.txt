@@ -29,3 +29,19 @@ share/doc/python3.3/examples/Tools/scripts/ptags.py
 
 pkgutil
 https://github.com/nvie/vim_bridge
+
+
+
+
+# 9826  grep server Cellar/vim/7.4.052/INSTALL_RECEIPT.json
+# 9886  brew install vim --with-client-server
+# 9892  #brew install vim --with-client-server
+# 9916  vim --serverlist
+# 9920  vim --serverlist
+# 9921  vim --servername BOB --remote brew.rb 
+# 9922  vim --servername BOB --remote /etc/passwd 
+# 9923  vim --serverlist
+# 9924  vim --serverlist
+# 9926  history | grep -e server
+# 9927  history | grep -e server | sed 's/^/#/'
+# 9928  history | grep -e server | sed 's/^/#/' >> ~/dot/doc/debugging.txt 

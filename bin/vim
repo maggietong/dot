@@ -1,5 +1,5 @@
 #!/bin/bash
-set +x
+
 MYNAME=$(basename "$0")
 
 case "$MYNAME" in
@@ -30,17 +30,35 @@ case "$MYNAME" in
         ;;
 esac
 
+SERVERNAME='__DEFAULT__'  # must be in caps for no apparent reason
+
 mkdir -p ~/.vim/logs
 LOGFILE=~/.vim/logs/$(date +%s).log  # I don't have time to mess with this. so...don't run out of disk space.
 
 # 15 is the min to include line numbers for all parse *.vim files
-SPECIAL_OPTS="-V15${LOGFILE}"
 rm -f $LOGFILE
 
 LOCAL_VIM="/usr/local/Cellar/vim/7.4.052/bin/vim"
-
-if [ -e "${LOCAL_VIM}" ] ; then
-    "${LOCAL_VIM}" ${SPECIAL_OPTS} ${MODE_OPTS} "$@"
-else
-    /usr/bin/vim ${SPECIAL_OPTS} ${MODE_OPTS} "$@"
+if [ ! -e "${LOCAL_VIM}" ] ; then
+    LOCAL_VIM=/usr/bin/vim
 fi
+
+SERVER_LIST="$(${LOCAL_VIM} --serverlist)"
+
+SERVER_COUNT=$(echo "$SERVER_LIST" | wc -l)
+
+if [ $SERVER_COUNT -gt 1 ] ; then
+    echo "more than one server running" >&2
+    exit 1
+fi
+
+SPECIAL_OPTS="--servername $SERVERNAME"
+
+if [ "x$SERVER_LIST" == "x$SERVERNAME" ] ; then
+    SPECIAL_OPTS="$SPECIAL_OPTS --remote"
+    echo "Go to vim server ${SERVERNAME}. Your file(s) should be waiting there."
+else
+    SPECIAL_OPTS="${SPECIAL_OPTS} -V15${LOGFILE}"
+fi
+
+"${LOCAL_VIM}" ${SPECIAL_OPTS} ${MODE_OPTS} "$@"

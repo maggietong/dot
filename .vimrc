@@ -1,10 +1,21 @@
+
+"
+"
+"  http://vimeo.com/7035132
+"  ,cj  -- close other window(s)
+"  ^]   -- follow vim "link"
+"  ^T   -- go back (how far?) 
+"  :cwin  -- open quickfix window
+"  :ls  -- buffer list
+"  :buffer  -- edit buffer
+"  :bn -- buffer next
+"  :badd -- buffer add
 "
 "
 "
 " Annoyances:
 "  retab suport
 "  ....many
-"
 "
 "
 "
@@ -50,6 +61,7 @@ set nocompatible
 filetype off
 filetype plugin indent on
 
+set number
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
@@ -64,13 +76,12 @@ set undodir=~/.vim/undo
 set modeline
 set modelines=4
 set cursorline
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set lcs=tab:▸\ ,trail:·,nbsp:_
 set list
 set hlsearch
 set ignorecase
 set incsearch
-"set laststatus=2
-set laststatus=0
+set laststatus=1
 set noerrorbells
 set nostartofline
 set ruler
@@ -139,11 +150,11 @@ let g:pymode_lint_message = 0
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257']
 let g:pymode_lint_write = 0
-let g:pymode_lint_on_fly = 0
-"let g:pymode_lint_ignore = 'E501,W'
+let g:pymode_lint_on_fly = 1
+let g:pymode_lint_ignore = 'E501,W'
 let g:pymode_rope = 0
 let g:pymode_breakpoint = 1
-let g:pymode_trim_whitespaces = 0
+let g:pymode_trim_whitespaces = 1
 let g:pymode_run_key = 'E'
 "let g:pymode_virtualenv = 1
 let g:pymode_folding = 0
