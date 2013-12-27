@@ -36,11 +36,6 @@ esac
 ## 15 is the min to include line numbers for all parse *.vim files
 #rm -f $LOGFILE
 
-LOCAL_VIM="/usr/local/Cellar/vim/7.4.052/bin/vim"
-if [ ! -e "${LOCAL_VIM}" ] ; then
-    LOCAL_VIM=/usr/bin/vim
-fi
-
 #SPECIAL_OPTS="-V15${LOGFILE}"
 SPECIAL_OPTS=""
 "${LOCAL_VIM}" ${SPECIAL_OPTS} ${MODE_OPTS} "$@"

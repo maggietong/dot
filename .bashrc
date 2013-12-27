@@ -10,6 +10,11 @@ fi
 # wget -O - -q http://http.us.debian.org/debian/pool/main/b/bash-completion/bash-completion_2.0-1_all.deb
 # ar x /tmp/f.deb
 
+export LOCAL_VIM="/usr/local/Cellar/vim/7.4.052/bin/vim"
+if [ ! -e "${LOCAL_VIM}" ] ; then
+    export LOCAL_VIM=/usr/bin/vim
+fi
+
 export MYUCS=bb17-spam48
 export CURRENT_TREE=~/git/mainline
 export PYTHONUSERBASE=~/.python

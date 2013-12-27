@@ -38,28 +38,23 @@ SERVERNAME='__DEFAULT__'  # must be in caps for no apparent reason
 ## 15 is the min to include line numbers for all parse *.vim files
 #rm -f $LOGFILE
 
-LOCAL_VIM="/usr/local/Cellar/vim/7.4.052/bin/vim"
-if [ ! -e "${LOCAL_VIM}" ] ; then
-    LOCAL_VIM=/usr/bin/vim
-fi
-
-SERVER_LIST="$(${LOCAL_VIM} --serverlist)"
-
-SERVER_COUNT=$(echo "$SERVER_LIST" | wc -l)
-
-if [ $SERVER_COUNT -gt 1 ] ; then
-    echo "more than one server running" >&2
-    exit 1
-fi
-
-SPECIAL_OPTS="--servername $SERVERNAME"
-
-if [ "x$SERVER_LIST" == "x$SERVERNAME" ] ; then
-    SPECIAL_OPTS="$SPECIAL_OPTS --remote"
-    echo "Go to vim server ${SERVERNAME}. Your file(s) should be waiting there."
+if "${LOCAL_VIM}" -version | grep -qe '+clientserver' ; then
+    SERVER_LIST="$(${LOCAL_VIM} --serverlist)"
+    SERVER_COUNT=$(echo "$SERVER_LIST" | wc -l)
+    if [ $SERVER_COUNT -gt 1 ] ; then
+        echo "more than one server running" >&2
+        exit 1
+    fi
+    SPECIAL_OPTS="--servername $SERVERNAME"
+    if [ "x$SERVER_LIST" == "x$SERVERNAME" ] ; then
+        SPECIAL_OPTS="$SPECIAL_OPTS --remote"
+        echo "Go to vim server ${SERVERNAME}. Your file(s) should be waiting there."
+    else
+        #SPECIAL_OPTS="${SPECIAL_OPTS} -V15${LOGFILE}"
+        SPECIAL_OPTS="${SPECIAL_OPTS}"
+    fi
 else
-    #SPECIAL_OPTS="${SPECIAL_OPTS} -V15${LOGFILE}"
-    SPECIAL_OPTS="${SPECIAL_OPTS}"
+    SPECIAL_OPTS=""
 fi
 
 "${LOCAL_VIM}" ${SPECIAL_OPTS} ${MODE_OPTS} "$@"
