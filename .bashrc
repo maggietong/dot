@@ -1,4 +1,6 @@
 
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
 if [ -f ~/.current_tree ] ; then
     #source `cat ~/.current_tree`/qali/config/qa_bashrc
     true

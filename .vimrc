@@ -5,7 +5,7 @@ filetype plugin indent on
 
 set number
 set shiftwidth=4
-set tabstop=8
+set tabstop=4
 set expandtab
 set textwidth=119
 set nofoldenable
@@ -35,6 +35,7 @@ set scrolloff=3
 set switchbuf+=useopen  " This is supposed to re-use open windows. Nope.
 set wildmode=longest,list
 set autochdir
+set tags=./tags;~
 
 syntax on
 
@@ -43,6 +44,10 @@ set rtp+=~/.vim/bundle/vundle/
 
 call vundle#rc()
 Bundle 'gmarik/vundle'
+
+Bundle 'vim-scripts/taglist.vim'
+let Tlist_Use_Horiz_Window=1
+
 Bundle 'ivyl/vim-bling'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'qualiabyte/vim-colorstepper'
@@ -55,11 +60,12 @@ Bundle 'ynkdir/vim-vimlparser'
 Bundle 'jsatt/python_fn'
 Bundle 'vim-scripts/python_match.vim'
 Bundle 'klen/python-mode'
+Bundle 'itchyny/lightline.vim'
 
 let g:pymode = 1
 let g:pymode_doc = 1
 let g:pymode_doc_bind = 'K'
-let g:pymode_lint = 0
+let g:pymode_lint = 1
 let g:pymode_lint_message = 0
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257']

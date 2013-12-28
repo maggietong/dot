@@ -2,6 +2,16 @@
 
 *commands-to-remember*
 
+    0  -- GO TO COLUMN ZERO
+    e -- Move to the end of a word. 
+    w -- Move forward to the beginning of a word. 
+    b -- Move backward to the beginning of a word. 
+    0 -- Move to the beginning of the line. 
+    H -- Jump to the top of the screen. 
+    M -- Jump to the middle of the screen. 
+    L -- Jump to the bottom of the screen. 
+    gg -- Jump to beginning of file
+
     ,cj  -- close other window(s)
     ^]   -- follow vim "link"
     ^T   -- go back (how far?) 
@@ -180,3 +190,6 @@
 "Bundle 'goldfeld/vim-seek'
 "Bundle 'scrooloose/syntastic'
 "Bundle 'jaredly/vim-debug'
+"Bundle 'joonty/vdebug'
+
+:TlistToggle
