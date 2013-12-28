@@ -14,3 +14,5 @@ virtualenv/bin/python
 .vim/logs/*.log
 .ipython/profile_default/log
 .ipython/profile_default/pid
+tags
+ctags
