@@ -1,48 +1,9 @@
-
-"
-"
-"  http://vimeo.com/7035132
-"  ,cj  -- close other window(s)
-"  ^]   -- follow vim "link"
-"  ^T   -- go back (how far?) 
-"  :cwin  -- open quickfix window
-"  :ls  -- buffer list
-"  :buffer  -- edit buffer
-"  :bn -- buffer next
-"  :badd -- buffer add
-"
-"
-"
-" Annoyances:
-"  retab suport
-"  ....many
-"
-"
-"
-"
-"
-"
-""let &verbosefile="foo.log"
-"":redi[r][!] > {file}  Redirect messages to file {file}.  The messages which
 ""
 ""
-""let g:tagbar_type_javascript = {
-""      \ 'ctagstype' : 'js',
-""      \ 'kinds' : [
-""      \   'v:variables:0:0',
-""      \   'f:functions:0:1'
-""      \ ],
-""      \ 'sro' : '.'
-""      \ }
 ""
 """ https://github.com/craigemery/dotFiles/blob/master/vim/plugin/autotag.vim
 "
 "
-"""" Wanted:
-""  * a much easier way of doing visual replace
-""  * a super easy way to in/undent python blocks. (or... have a command that selects the current inner-most block, then the next-outer, etc, etc. and cycles through them. It would then be possible to use >> / <<)
-""  * a way to dynamically generate help (F1), preferabley w/ pythom
-""  * shortcut for restarting that stupid server
 "
 ""   ]t      -- Jump to beginning of block
 ""   ]e      -- Jump to end of block
@@ -109,6 +70,16 @@ Bundle 'gmarik/vundle'
 ""Bundle 'vim-scripts/taglist.vim'
 ""Bundle 'majutsushi/tagbar'
 ""Bundle 'vim-signify'
+
+"Bundle 'vim-scripts/Conque-Shell'
+
+Bundle 'ivyl/vim-bling'
+
+"
+"
+"  !!!!! this looks good !!!!!
+"Bundle 'drmingdrmer/xptemplate'
+
 "
 "
 "Bundle 'goldfeld/vim-seek'

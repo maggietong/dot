@@ -1,0 +1,73 @@
+*stnbu*  Notes For Mike
+
+*commands-to-remember*
+
+    ,cj  -- close other window(s)
+    ^]   -- follow vim "link"
+    ^T   -- go back (how far?) 
+    :cwin  -- open quickfix window
+    :ls  -- buffer list
+    :buffer  -- edit buffer
+    :bn -- buffer next
+    :badd -- buffer add
+    :bd -- close current buffer
+    ^v  -- literal insert
+    * -- search for word under cursor
+
+    :colorcolumn
+
+    :helptags ~/.vim/doc
+
+    :scriptnames
+
+    :mk /tmp/somefile
+
+*snakemonkey*
+
+*todo*
+
+    highlight ColorColumn ctermbg=magenta
+    call matchadd('ColorColumn', '\%81v', 100)
+
+    let &verbosefile="foo.log"
+    :redi[r][!] > {file}  Redirect messages to file {file}.  The messages which
+    :imap <c-j> <c-r>=system('/tmp/imakeoutput.sh')<cr>
+
+            "" This has a couple of side-effects: it moves your cursor, and sets the last item in your search history to trailing
+            "" whitespace. This function gets around these problems:
+            function! <SID>StripTrailingWhitespaces()
+                " Preparation: save last search, and cursor position.
+                let _s=@/
+                let l = line(".")
+                let c = col(".")
+                " Do the business:
+                %s/\s\+$//e
+                " Clean up: restore previous search history, and cursor position
+                let @/=_s
+                call cursor(l, c)
+            endfunction
+
+*to-learn*
+
+    <C-r>{reg}  -- {paste in insert mode}
+    :set list   "   http://vimcasts.org/episodes/show-invisibles/
+
+*wanted*
+
+    * a much easier way of doing visual replace
+    * a super easy way to in/undent python blocks. (or... have a command that selects the current inner-most block, then the next-outer, etc, etc. and cycles through them. It would then be possible to use >> / <<)
+    * a way to dynamically generate help (F1), preferabley w/ pythom
+
+*keys*
+
+    ]t      -- Jump to beginning of block
+    ]e      -- Jump to end of block
+    ]v      -- Select (Visual Line Mode) block
+    ]<      -- Shift block to left
+    ]>      -- Shift block to right
+    ]#      -- Comment selection
+    ]u      -- Uncomment selection
+    ]c      -- Select current/previous class
+    ]d      -- Select current/previous function
+    ]<up>   -- Jump to previous line with the same/lower indentation
+    ]<down> -- Jump to next line with the same/lower indentation
