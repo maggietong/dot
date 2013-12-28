@@ -1,3 +1,8 @@
 #!/bin/sh
 
-less "$@"
+if which vimless > /dev/null ; then
+    vimless "$@"
+else
+    less "$@"
+fi
+

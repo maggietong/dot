@@ -26,6 +26,10 @@
 
 *todo*
 
+    http://pyclewn.sourceforge.net/
+
+    beginning of line (first non whitespace) -vs- actual beginning of line
+
     highlight ColorColumn ctermbg=magenta
     call matchadd('ColorColumn', '\%81v', 100)
 
@@ -71,3 +75,96 @@
     ]d      -- Select current/previous function
     ]<up>   -- Jump to previous line with the same/lower indentation
     ]<down> -- Jump to next line with the same/lower indentation
+
+""" https://github.com/craigemery/dotFiles/blob/master/vim/plugin/autotag.vim
+""http://cscope.sourceforge.net/cscope_vim_tutorial.html
+"https://github.com/michaeljsmith/vim-indent-object
+"https://github.com/vim-scripts/bufexplorer.zip
+""Tagbar window will stay open. |g:tagbar_autoclose| has to be unset for
+""autocmd FileType c,cpp,py nested :TagbarOpen
+""let g:tagbar_compact = 1
+""nmap <silent> <Leader>\\ :TagbarOpenAutoClose<CR>
+""nmap <silent> <Leader>\| :TagbarToggle<CR>
+""tagrelative
+"set tags=./tags,tags,$HOME
+""checkpath
+"":map <F4> [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+""Tlist_Ctags_Cmd
+"https://github.com/majutsushi/tagbar/wiki
+
+
+
+
+""""" PymodeLint
+"
+"
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""  :buffers[!]                  *:buffers* *:ls*
+"
+"""""  :[N]bn[ext][!] [N]                   *:bn* *:bnext* *E87*
+"""""       Go to [N]th next buffer in buffer list.  [N] defaults to one.
+"""""       Wraps around the end of the buffer list.
+"
+"""""  :[N]b[uffer][!] [N]          *:b* *:bu* *:buf* *:buffer* *E86*
+"""""       Edit buffer [N] from the buffer list.  If [N] is not given,
+"""""       the current buffer remains being edited.  See |:buffer-!| for
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""  :[count]tabnew [++opt] [+cmd] {file}
+"""""       Open a new tab page and edit {file}, like with |:edit|.
+"""""       For [count] see |:tab| below.
+"""""  :tabc[lose][!]   Close current tab page.
+"""""  :tabo[nly][!]    Close all other tab pages.
+"""""  :tabn[ext]               *:tabn* *:tabnext* *gt*
+"""""  :tabp[revious]               *:tabp* *:tabprevious* *gT* *:tabN*
+"""""  :tabfir[st]  Go to the first tab page.
+"""""  :tabl[ast]   Go to the last tab page.
+"""""  :tabd[o] {cmd}   Execute {cmd} in each tab page.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"
+"
+"au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+"
+""function! LastWinWasQuickfix()
+""    if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"
+""        return 1
+""    endif
+""    return 0
+""endfunction
+""aug QFClose
+""  au!
+""  au WinEnter * echo 'blaaaaaaah'
+""aug END
+"
+"
+""" works
+""map <buffer> <F4> :echo 'works' <CR>
+""map <buffer> <M-F4> :echo 'works' <CR>
+""map <buffer> <S-F6> :echo 'works' <CR>
+""map <buffer> UU :echo 'works' <CR>
+""" N O N E   of these work!! (maybe they're os-mapped)
+""map <buffer> <C-F6> :echo 'I suck' <CR>
+""map <buffer> <T-F6> :echo 'I suck' <CR>
+""map <buffer> <D-F6> :echo 'I suck' <CR>
+""map <buffer> <M-C-F6> :echo 'I suck' <CR>
+""map <buffer> <C-M-F6> :echo 'I suck' <CR>
+""map <buffer> <S-M-F6> :echo 'I suck' <CR>
+""map <buffer> <C-F3> :echo 'I suck' <CR>
+""map <buffer> <A-v> :echo 'I suck' <CR>
+""map <buffer> <M-v> :echo 'I suck' <CR>
+"
+"""""                       *skeleton* *template*
+""To read a skeleton (template) file when opening a new file: >
+""  :autocmd BufNewFile  *.c    0r ~/vim/skeleton.c
+""  :autocmd BufNewFile  *.h    0r ~/vim/skeleton.h
+""  :autocmd BufNewFile  *.java 0r ~/vim/skeleton.java
+"colorscheme BlackSea
+"
+"
+""verbose nmap <buffer> <F9> :PymodeLintAuto <CR>
+
+""" :compiler

@@ -10,9 +10,19 @@ fi
 
 export MYUCS=bb17-spam48
 export CURRENT_TREE=~/git/mainline
-#export PYTHONUSERBASE=~/.python
-#export PYTHONPATH=$CURRENT_TREE:$CURRENT_TREE/qali/extern:$PYTHONUSERBASE
-#export PYTHONSTARTUP=$PYTHONUSERBASE/startup.py
+export PYTHONUSERBASE=~/.python
+
+export PYTHONPATH=""
+
+if [ ! -z "${CURRENT_TREE}" -a -e "${CURRENT_TREE}" ] ;then
+    export PYTHONPATH=$CURRENT_TREE:$CURRENT_TREE/qali/extern:$PYTHONPATH
+fi
+
+if [ ! -z "${PYTHONUSERBASE}" -a -e "${PYTHONUSERBASE}" ] ;then
+    export PYTHONPATH=$PYTHONPATH:$PYTHONUSERBASE
+fi
+
+export PYTHONSTARTUP=$PYTHONUSERBASE/startup.py
 
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
