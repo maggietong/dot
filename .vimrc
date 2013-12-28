@@ -4,11 +4,11 @@ filetype off
 filetype plugin indent on
 
 set number
-set softtabstop=4
 set shiftwidth=4
-set tabstop=4
+set tabstop=8
 set expandtab
 set textwidth=119
+set nofoldenable
 set wildmenu
 set ttyfast
 set encoding=utf-8 nobomb
@@ -23,7 +23,7 @@ set list
 set hlsearch
 set ignorecase
 set incsearch
-set laststatus=1
+set laststatus=2
 set noerrorbells
 set nostartofline
 set ruler
@@ -34,60 +34,31 @@ set showcmd
 set scrolloff=3
 set switchbuf+=useopen  " This is supposed to re-use open windows. Nope.
 set wildmode=longest,list
+set autochdir
 
 syntax on
 
 set rtp+=~/.vim/plugin
-
 set rtp+=~/.vim/bundle/vundle/
+
 call vundle#rc()
 Bundle 'gmarik/vundle'
-
-"Bundle 'tpope/vim-repeat'
-"Bundle 'tpope/vim-commentary'
-Bundle 'rkitover/vimpager'
-"Bundle 'Lokaltog/powerline'
-
-
-""""" reenable these two
-"Bundle 'vim-scripts/taglist.vim'
-"Bundle 'majutsushi/tagbar'
-
-"Bundle 'vim-signify'
-
-"Bundle 'vim-scripts/Conque-Shell'
-
 Bundle 'ivyl/vim-bling'
-"Bundle 'vim-scripts/UltiSnips'
-
-"  !!!!! this looks good !!!!!
-"Bundle 'drmingdrmer/xptemplate'
-
-"Bundle 'goldfeld/vim-seek'
-"
-
-
-""Bundle 'vim-scripts/ScrollColors'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'qualiabyte/vim-colorstepper'
-""Bundle 'Rykka/riv.vim'
-"
 Bundle 'Valloric/YouCompleteMe'
+verbose nmap <buffer> <C-M-y> :YcmRestartServer<CR>
 let g:ycm_collect_identifiers_from_tags_files = 0
 let g:ycm_cache_omnifunc = 0
-verbose nmap <buffer> <C-M-y> :YcmRestartServer<CR>
-"
-set nofoldenable
+Bundle 'syngan/vim-vimlint'
+Bundle 'ynkdir/vim-vimlparser'
 Bundle 'jsatt/python_fn'
 Bundle 'vim-scripts/python_match.vim'
-Bundle 'pythonhelper'
 Bundle 'klen/python-mode'
-"
-let g:pymode = 1
-""let g:pymode_debug = 0
-""let g:pymode_doc' = 1
-""let g:pymode_doc_bind = 'K'
 
+let g:pymode = 1
+let g:pymode_doc = 1
+let g:pymode_doc_bind = 'K'
 let g:pymode_lint = 0
 let g:pymode_lint_message = 0
 let g:pymode_lint_cwindow = 1
@@ -99,7 +70,6 @@ let g:pymode_rope = 0
 let g:pymode_breakpoint = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_run_key = 'E'
-"let g:pymode_virtualenv = 1
 let g:pymode_folding = 0
 let g:pymode_indent = 1
 let g:pymode_motion = 1
@@ -112,16 +82,7 @@ let g:pymode_syntax_all = 1
 let g:pymode_warnings = 1
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_unmodified = 0
-"Bundle 'scrooloose/syntastic'
 
-Bundle 'syngan/vim-vimlint'
-Bundle 'ynkdir/vim-vimlparser'
-"Bundle 'jaredly/vim-debug'
-"
-"
-
-Bundle 'tpope/vim-fugitive'
-verbose map <buffer> ,gd :Gdiff<CR>
 
 function! s:DiffWithSaved()
   let filetype=&ft

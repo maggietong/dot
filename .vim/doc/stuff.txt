@@ -168,3 +168,15 @@
 ""verbose nmap <buffer> <F9> :PymodeLintAuto <CR>
 
 """ :compiler
+"Bundle 'tpope/vim-repeat'
+"Bundle 'tpope/vim-commentary'
+"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Bundle 'vim-scripts/taglist.vim'
+"Bundle 'majutsushi/tagbar'
+"Bundle 'vim-signify'
+"Bundle 'vim-scripts/Conque-Shell'
+"Bundle 'vim-scripts/UltiSnips'
+"Bundle 'drmingdrmer/xptemplate'
+"Bundle 'goldfeld/vim-seek'
+"Bundle 'scrooloose/syntastic'
+"Bundle 'jaredly/vim-debug'
