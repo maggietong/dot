@@ -74,6 +74,19 @@
 
 *todo*
 
+    indent stuff~
+
+    autoindent -- uses the indent from the previous line.
+    smartindent -- is like 'autoindent' but also recognizes some C syntax to increase/reduce the indent where appropriate.
+    cindent -- Works more cleverly than the other two and is configurable to different indenting styles.
+    indentexpr -- The most flexible of all: Evaluates an expression to compute the indent of a line.  When non-empty this method overrides the other ones.
+                  See |indent-expression|.
+    cindent -- Enables Vim to perform C program indenting automatically.
+    cinkeys -- Specifies which keys trigger reindenting in insert mode.
+    cinoptions -- Sets your preferred indent style.
+    cinwords -- Defines keywords that start an extra indent in the next line.
+
+
     http://pyclewn.sourceforge.net/
 
     beginning of line (first non whitespace) -vs- actual beginning of line

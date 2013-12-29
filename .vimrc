@@ -62,11 +62,16 @@ Bundle 'jsatt/python_fn'
 Bundle 'vim-scripts/python_match.vim'
 Bundle 'klen/python-mode'
 Bundle 'itchyny/lightline.vim'
+Bundle 'jmcantrell/vim-virtualenv'
+let g:virtualenv_auto_activate = 1
+let g:virtualenv_directory = "$HOME/virtualenv"
+
 
 let g:pymode = 1
 let g:pymode_doc = 1
 let g:pymode_doc_bind = 'K'
 let g:pymode_lint = 1
+let g:pymode_virtualenv = 1
 let g:pymode_lint_message = 0
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257']
