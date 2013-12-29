@@ -54,7 +54,6 @@ Bundle 'ivyl/vim-bling'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'qualiabyte/vim-colorstepper'
 Bundle 'Valloric/YouCompleteMe'
-verbose nmap <buffer> <C-M-y> :YcmRestartServer<CR>
 let g:ycm_collect_identifiers_from_tags_files = 0
 let g:ycm_cache_omnifunc = 0
 Bundle 'syngan/vim-vimlint'
@@ -103,6 +102,7 @@ com! DiffWithSaved call s:DiffWithSaved()
 
 function! g:CleanWhiteSpace()
     :%s/\s\+$//e
+    retab
 endfunction
 
 function! OpenBrowser(word)
@@ -122,9 +122,5 @@ map <unique> ,tp :set paste!<CR>
 map <unique> ,tl :set list!<CR>
 map <unique> ,vh "zyiw:exe "h ".@z.""<CR>  " help for word under cursor
 map <unique> ,gs :call OpenBrowser(expand("<cword>"))<cr><cr>  " 'google' word under cursor
-
-
-"exe "nnoremap <silent> <buffer> " g:pymode_run_bind ":PymodeRun<CR>"
-"
-"*:PymodeLint* -- Check code in current buffer
-"*:PymodeDoc* <args> — show documentation 
+vmap > >gv
+vmap < <gv
