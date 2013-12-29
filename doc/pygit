@@ -1,0 +1,188 @@
+from git import *
+repo = Repo('/tmp/gg/mainline')
+repo.bare
+repo.branches
+import git
+git.__version__
+repo.heads
+heads = repo.heads
+tags = repo.tags
+head = repo.head
+master.repo
+master.repo.index
+import git
+repo = Repo('~/git/mainline')
+repo.heads
+repo.branches
+repo.active_branch
+repo.active_branch.name
+repo.active_branch.name
+repo.is_dirty
+repo.is_dirty()
+repo.is_dirty()
+repo.config_level
+repo.tree
+repo.tree
+repo.tree()
+repo.tree()
+repo.archive
+repo.archive%
+repo.archive?
+repo.commit
+repo.config_reader
+#repo.config_reader()
+vars(repo)
+dir(repo)
+dir(repo)
+b = copy(dir(repo))
+repo.config_reader()
+x = repo.config_reader()
+repo.description
+repo.git?
+repo.git
+repo.git.status()
+repo.untracked_files
+dir(repo)
+dir(repo) > /tmp//fdsa
+dir(repo)
+dir(repo)
+dir(repo)
+dir(repo)
+dir(repo)
+dir(repo)
+dir(repo)
+dir(repo)
+repo.alternates
+repo.blame
+repo.blame()
+repo.blame?
+repo.daemon_export
+repo.git_dir
+repo.head
+repo.heads
+repo.index
+repo.index.diff
+repo.index.diff()
+repo.index.diff()
+repo.index.entries
+repo.index.repo
+repo.index.version
+repo.heads.index
+repo.head.log
+repo.head.name
+repo.head.re
+repo.head.repo
+repo.head.ref
+repo.head.reference
+repo.head.reference.is_valid
+repo.head.reference.tracking_branch
+repo.head
+repo.head.name
+repo.head.reference.repo
+repo.head.reference.list_items
+repo.head.reference.list_items()
+repo.head.reference.list_items?
+repo.head.reference.iter_items?
+repo.head.reference.iter_items??
+repo.head.reference.iter_items
+repo.head.reference.iter_items()
+repo.head.reference.iter_items()
+repo.head.commit
+repo.head.commit.tree
+repo.head.reference.commit
+repo.head.reference.commit.message
+repo.head.reference.commit.author
+repo.head.reference.commit.committer
+repo.head.reference.commit.TYPES
+repo.head.reference.commit.list_items
+repo.head.reference.commit.list_items()
+repo.head.reference.commit.diff
+repo.head.reference.commit.diff()
+repo.head.reference.commit.diff??
+repo.head.reference.commit.diff()
+repo.head.reference.commit.name_rev
+repo.head.reference.commit.size
+repo.head.reference.commit.parents
+repo.head.reference.commit.new
+repo.head.reference.commit.new??
+repo.head.reference.commit.repo
+repo.head.reference.commit.summary
+repo.head.reference.commit.type
+repo.head.reference.commit.tree
+repo.head.reference.commit.hexsha
+repo.head.reference.commit.binsha
+repo.head.reference.commit.hexsha
+repo.git.status()
+type(repo.git.status())
+hcommit = repo.head.commit
+repo.index.add
+repo.index.add??
+repo.index.add??
+repo.index.add('3')
+repo = Repo('/Users/miburr/dot')
+repo.index
+repo.index.diff
+repo.index.diff
+repo.index.diff()
+repo.index.update
+repo.index.update??
+repo = Repo('/tmp/dot.dot.dot')
+repo.index.add
+repo.index.diff
+repo.index.diff()
+repo.index.diff(None)
+repo.index.add('.vim/plugin/bob.vim')
+repo.index.add('.vim/plugin/bob.vim')
+repo.index.add('./.vim/plugin/bob.vim')
+repo.index.add('./.vim/plugin/bob.vim')
+repo = Repo('/tmp/dot.dot.dot')
+repo.index.diff(None)
+repo.index.add('.vim/plugin/bob.vim')
+os.environ['GIT_DIR'] = '/private/tmp/dot.dot.dot/.git
+os.environ['GIT_DIR'] = '/private/tmp/dot.dot.dot/.git
+os.environ['GIT_DIR'] = '/private/tmp/dot.dot.dot/.git'
+repo.index.add('.vim/plugin/bob.vim')
+repo.git_dir
+repo = Repo('/tmp/dot.dot.dot')
+repo.index.add('.vim/plugin/bob.vim')
+repo = Repo('/private/tmp/xxx')
+repo.head.is_valid
+repo.head.is_valid()
+repo.git.status
+repo.git.status()
+del os.environ['GIT_DIR']
+repo.git.status()
+repo.index.diff
+repo.index.diff()
+print repo.index.diff(None)
+print repo.index.diff(None)
+repo.git.status()
+repo.heads[0]
+repo.heads
+repo.head.is_valid()
+repo.index.diff
+repo.index.diff??
+repo.index.diff()
+repo.index.diff(None)
+repo.index.commit??
+cc = repo.index.commit('wwooohoh')
+repo.index.diff(None)
+repo.index.remove
+repo.index.remove??
+rrrr = repo.index.remove(items='pip_list-l.out')
+rrrr = repo.index.remove(items=['pip_list-l.out'])
+repo.index.diff(None)
+repo.git.status()
+repo.index.entries
+repo.index.path
+repo.index.from_tree
+repo.index.from_tree()
+repo.index.from_tree??
+repo.index.Index
+repo.index.Index??
+repo.index.entry_key
+repo.index.entry_key()
+repo.index.unmerged_blobs
+repo.index.unmerged_blobs()
+repo.index.resolve_blobs()
+repo.index.write??

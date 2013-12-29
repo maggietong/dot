@@ -49,3 +49,35 @@ def write_to_vim_buffer(output):
 def repo_report(path):
     output = get_repo_report(path)
     write_to_vim_buffer(output)
+
+#
+#
+#  test_remote = repo.create_remote('test', 'git@server:repo.git')
+#  repo.delete_remote(test_remote) # create and delete remotes
+#  origin = repo.remotes.origin    # get default remote by name
+#  origin.refs                     # local remote references
+#  o = origin.rename('new_origin') # rename remotes
+#  o.fetch()                       # fetch, pull and push from and to the remote
+#  o.pull()
+#  o.push()
+#
+
+
+#
+#  o.url
+#  'git@server:dummy_repo.git'
+#
+#  Change configuration for a specific remote only:
+#
+#  o.config_writer.set("pushurl", "other_url")
+#
+
+#
+#  To switch between branches, you effectively need to point your HEAD to the new branch head and reset your index and working copy to match. A simple manual way to do it is the following one:
+#
+#  repo.head.reference = repo.heads.other_branch
+#  repo.head.reset(index=True, working_tree=True)
+#
+
+
+
