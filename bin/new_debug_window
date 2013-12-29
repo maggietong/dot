@@ -1,0 +1,14 @@
+#!/usr/bin/env osascript
+
+on run argv
+    -- set command to (item 1 of argv)
+    tell application "iTerm"
+        activate
+        set myterm to (current terminal)
+        tell myterm
+            tell application "System Events" to keystroke "D" using command down
+            set AppleScript's text item delimiters to " "
+            tell current session to write text (argv as text)
+        end tell
+    end tell
+end run

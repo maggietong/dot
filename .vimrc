@@ -32,10 +32,12 @@ set showmode
 set title
 set showcmd
 set scrolloff=3
-set switchbuf+=useopen  " This is supposed to re-use open windows. Nope.
+set switchbuf+=useopen
 set wildmode=longest,list
-set autochdir
+"set autochdir
 set tags=./tags;~
+
+set bufhidden=hide
 
 syntax on
 
@@ -89,13 +91,13 @@ let g:pymode_warnings = 1
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_unmodified = 0
 
-
 function! s:DiffWithSaved()
   let filetype=&ft
   diffthis
   vnew | r # | normal! 1Gdd
   diffthis
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+
 endfunction
 com! DiffWithSaved call s:DiffWithSaved()
 
@@ -103,12 +105,26 @@ function! g:CleanWhiteSpace()
     :%s/\s\+$//e
 endfunction
 
-verbose map <buffer> <C-P> :set paste <CR>
-verbose map <buffer> <C-A> :set nopaste <CR>
-verbose map <C-H> <C-W>h<C-W>_
-verbose map <C-J> <C-W>j<C-W>_
-verbose map <C-K> <C-W>k<C-W>_
-verbose map <C-L> <C-W>l<C-W>_
-verbose map <F5> :set spell! spelllang=en_us<CR>
-verbose map <F3> :source ~/.vimrc<CR>
-verbose map <F1> :!less ~/.vimrc<CR>
+function! OpenBrowser(word)
+    let l:url = "https://www.google.com/?q=".a:word."\\\#q=".a:word
+    execute "!open ". l:url
+endfunction
+
+map <unique> <C-H> <C-W>h<C-W>_
+map <unique> <C-J> <C-W>j<C-W>_
+map <unique> <C-K> <C-W>k<C-W>_
+map <unique> <C-L> <C-W>l<C-W>_
+map <unique> ,ts :set spell! spelllang=en_us<CR>
+map <unique> ,sv :source ~/.vimrc<CR>   
+map <unique> ,ev :e ~/.vimrc<CR>
+map <unique> ,hh :h stnbu<CR>
+map <unique> ,tp :set paste!<CR>
+map <unique> ,tl :set list!<CR>
+map <unique> ,vh "zyiw:exe "h ".@z.""<CR>  " help for word under cursor
+map <unique> ,gs :call OpenBrowser(expand("<cword>"))<cr><cr>  " 'google' word under cursor
+
+
+"exe "nnoremap <silent> <buffer> " g:pymode_run_bind ":PymodeRun<CR>"
+"
+"*:PymodeLint* -- Check code in current buffer
+"*:PymodeDoc* <args> — show documentation 

@@ -1,6 +1,44 @@
 *stnbu*  Notes For Mike
 
-*commands-to-remember*
+*m:keys*
+
+    custom~
+
+    'rd -- run debugger
+    'rb -- run (file in) buffer
+    'rl -- run lint
+    'sv -- source ~/.vimrc
+    'tp -- toggle paste mode
+    'ts -- toggle spelling
+    'tl -- toggle list mode
+    'ev -- edit ~/.vimrc
+    'vh -- vim help (for word under cursor)
+    'gs -- google search (for word under cursor)
+    ,hh -- view mike's help file (this)
+
+    (tip --> :map ,<CR>)
+
+    <C-H> <C-W>h<C-W> -- jump to window right
+    <C-J> <C-W>j<C-W> -- jump to window down
+    <C-K> <C-W>k<C-W> -- jump to window up
+    <C-L> <C-W>l<C-W> -- jump to window left
+
+    easily-forgotten~
+
+    ]t      -- Jump to beginning of block
+    ]e      -- Jump to end of block
+    ]v      -- Select (Visual Line Mode) block
+    ]<      -- Shift block to left
+    ]>      -- Shift block to right
+    ]#      -- Comment selection
+    ]u      -- Uncomment selection
+    ]c      -- Select current/previous class
+    ]d      -- Select current/previous function
+    ]<up>   -- Jump to previous line with the same/lower indentation
+    ]<down> -- Jump to next line with the same/lower indentation
+    <C-r>{reg}  -- {paste in insert mode}
+
+*m:commands-to-remember*
 
     0  -- GO TO COLUMN ZERO
     e -- Move to the end of a word. 
@@ -63,7 +101,6 @@
 
 *to-learn*
 
-    <C-r>{reg}  -- {paste in insert mode}
     :set list   "   http://vimcasts.org/episodes/show-invisibles/
 
 *wanted*
@@ -74,17 +111,6 @@
 
 *keys*
 
-    ]t      -- Jump to beginning of block
-    ]e      -- Jump to end of block
-    ]v      -- Select (Visual Line Mode) block
-    ]<      -- Shift block to left
-    ]>      -- Shift block to right
-    ]#      -- Comment selection
-    ]u      -- Uncomment selection
-    ]c      -- Select current/previous class
-    ]d      -- Select current/previous function
-    ]<up>   -- Jump to previous line with the same/lower indentation
-    ]<down> -- Jump to next line with the same/lower indentation
 
 """ https://github.com/craigemery/dotFiles/blob/master/vim/plugin/autotag.vim
 ""http://cscope.sourceforge.net/cscope_vim_tutorial.html
