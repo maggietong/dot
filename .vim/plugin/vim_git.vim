@@ -9,16 +9,16 @@ sys.path.insert(0, plugin_root)
 import vim_git
 EOF
 
-fun! VimGitShowReport()
-    let l:file = expand('%:p')
-    pclose
-    exe "botright 8new _gitreport_"
-    setlocal buftype=nofile bufhidden=delete noswapfile nowrap previewwindow
-    redraw
-    python vim_git.repo_report(vim.eval("l:file"))
-    setlocal nomodifiable
-    setlocal nomodified
-    setlocal filetype=rst
-    wincmd p
-endfunction
-
+"fun! VimGitShowReport()
+"    let l:file = expand('%:p')
+"    pclose
+"    exe "botright 8new _gitreport_"
+"    setlocal buftype=nofile bufhidden=delete noswapfile nowrap previewwindow
+"    redraw
+"    python vim_git.repo_report(vim.eval("l:file"))
+"    setlocal nomodifiable
+"    setlocal nomodified
+"    setlocal filetype=rst
+"    wincmd p
+"endfunction
+"

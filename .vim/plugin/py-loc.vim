@@ -216,7 +216,7 @@ EOS
 
 
 function! PHCursorHold()
-    if (!exists('b:current_syntax') || (b:current_syntax != 'pymode'))
+    if (!exists('b:current_syntax') || ((b:current_syntax != 'pymode') && (b:current_syntax != 'python')))
     let w:PHStatusLine = ''
     return
     endif

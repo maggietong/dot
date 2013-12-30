@@ -12,7 +12,7 @@ function! VirtualEnvoStatus()
     if ! g:virtualenv_loaded
         return ''
     endif
-    return 'Virt='. virtualenv#statusline()
+    return 'PYVE:'. virtualenv#statusline()
 endfunction
 
 let g:lightline = {

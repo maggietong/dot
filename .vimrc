@@ -65,6 +65,7 @@ Bundle 'itchyny/lightline.vim'
 Bundle 'jmcantrell/vim-virtualenv'
 let g:virtualenv_auto_activate = 1
 let g:virtualenv_directory = "$HOME/virtualenv"
+Bundle 'scrooloose/nerdtree'
 
 
 let g:pymode = 1
