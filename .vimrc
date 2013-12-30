@@ -67,6 +67,18 @@ let g:virtualenv_auto_activate = 1
 let g:virtualenv_directory = "$HOME/virtualenv"
 Bundle 'scrooloose/nerdtree'
 
+"http://blog.ant0ine.com/typepad/2007/03/ack-and-vim-integration.html
+"Bundle 'mileszs/ack.vim'
+"Bundle 'vim-scripts/vcscommand.vim'
+
+
+"Bundle 'MarcWeber/vim-addon-mw-utils'
+"Bundle 'tomtom/tlib_vim'
+"Bundle 'garbas/vim-snipmate'
+"" Optional:
+""Bundle 'honza/vim-snippets'
+
+Bundle 'tpope/vim-fugitive'
 
 let g:pymode = 1
 let g:pymode_doc = 1
@@ -116,17 +128,56 @@ function! OpenBrowser(word)
     execute "!open ". l:url
 endfunction
 
-map <unique> <C-H> <C-W>h<C-W>_
-map <unique> <C-J> <C-W>j<C-W>_
-map <unique> <C-K> <C-W>k<C-W>_
-map <unique> <C-L> <C-W>l<C-W>_
-map <unique> ,ts :set spell! spelllang=en_us<CR>
-map <unique> ,sv :source ~/.vimrc<CR>   
-map <unique> ,ev :e ~/.vimrc<CR>
-map <unique> ,hh :h stnbu<CR>
-map <unique> ,tp :set paste!<CR>
-map <unique> ,tl :set list!<CR>
-map <unique> ,vh "zyiw:exe "h ".@z.""<CR>  " help for word under cursor
-map <unique> ,gs :call OpenBrowser(expand("<cword>"))<cr><cr>  " 'google' word under cursor
+map <C-H> <C-W>h<C-W>_
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-L> <C-W>l<C-W>_
+map ,ts :set spell! spelllang=en_us<CR>
+map ,sv :source ~/.vimrc<CR>   
+map ,ev :e ~/.vimrc<CR>
+map ,hh :h stnbu<CR>
+map ,tp :set paste!<CR>
+map ,tl :set list!<CR>
+map ,vh "zyiw:exe "h ".@z.""<CR>  " help for word under cursor
+map ,gs :call OpenBrowser(expand("<cword>"))<cr><cr>  " 'google' word under cursor
 vmap > >gv
 vmap < <gv
+
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'MyFugitive',
+      \   'readonly': 'MyReadonly',
+      \   'modified': 'MyModified'
+      \ },
+      \ }
+
+function! MyModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! MyReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "RO"
+  else
+    return ""
+  endif
+endfunction
+
+function! MyFugitive()
+  return exists('*fugitive#head') ? fugitive#head() : ''
+endfunction

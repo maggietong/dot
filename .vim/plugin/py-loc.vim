@@ -210,8 +210,6 @@ def deleteTags(bufferNumber):
         del BUFFERTICKS[bufferNumber]
     except:
         pass
-
-
 EOS
 
 
@@ -236,7 +234,7 @@ function! TagInStatusLine()
     if (exists("w:PHStatusLine"))
         return w:PHStatusLine
     else
-        return ""
+        return "<module>"
     endif
 endfunction
 
