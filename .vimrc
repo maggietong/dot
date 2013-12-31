@@ -26,6 +26,8 @@ set incsearch
 set laststatus=2
 set noerrorbells
 set nostartofline
+set verbose=1
+set verbosefile=~/.vim/logs/verbose.log
 set ruler
 set shortmess=atI
 set showmode
@@ -66,6 +68,8 @@ Bundle 'jmcantrell/vim-virtualenv'
 let g:virtualenv_auto_activate = 1
 let g:virtualenv_directory = "$HOME/virtualenv"
 Bundle 'scrooloose/nerdtree'
+
+let NERDTreeQuitOnOpen = 1
 
 "http://blog.ant0ine.com/typepad/2007/03/ack-and-vim-integration.html
 "Bundle 'mileszs/ack.vim'
@@ -123,9 +127,13 @@ function! g:CleanWhiteSpace()
     retab
 endfunction
 
-function! OpenBrowser(word)
-    let l:url = "https://www.google.com/?q=".a:word."\\\#q=".a:word
-    execute "!open ". l:url
+function! OpenBrowser(url)
+    execute "!open ". a:url
+endfunction
+
+function! WebSearch(term)
+    let l:url = "https://www.google.com/?q=".a:term."\\\#q=".a:term
+    call OpenBrowser(l:url)
 endfunction
 
 map <C-H> <C-W>h<C-W>_
@@ -139,7 +147,8 @@ map ,hh :h stnbu<CR>
 map ,tp :set paste!<CR>
 map ,tl :set list!<CR>
 map ,vh "zyiw:exe "h ".@z.""<CR>  " help for word under cursor
-map ,gs :call OpenBrowser(expand("<cword>"))<cr><cr>  " 'google' word under cursor
+map <silent> ,gs :call WebSearch(expand("<cword>"))<cr><cr>  " 'google' word under cursor
+map <silent> ,ol :call OpenBrowser(expand("<cWORD>"))<cr><cr>
 vmap > >gv
 vmap < <gv
 

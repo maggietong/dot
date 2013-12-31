@@ -129,16 +129,9 @@
 ""http://cscope.sourceforge.net/cscope_vim_tutorial.html
 "https://github.com/michaeljsmith/vim-indent-object
 "https://github.com/vim-scripts/bufexplorer.zip
-""Tagbar window will stay open. |g:tagbar_autoclose| has to be unset for
-""autocmd FileType c,cpp,py nested :TagbarOpen
-""let g:tagbar_compact = 1
-""nmap <silent> <Leader>\\ :TagbarOpenAutoClose<CR>
-""nmap <silent> <Leader>\| :TagbarToggle<CR>
 ""tagrelative
 "set tags=./tags,tags,$HOME
-""checkpath
-"":map <F4> [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-""Tlist_Ctags_Cmd
+"checkpath
 "https://github.com/majutsushi/tagbar/wiki
 
 
@@ -161,20 +154,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""  :[count]tabnew [++opt] [+cmd] {file}
-"""""       Open a new tab page and edit {file}, like with |:edit|.
-"""""       For [count] see |:tab| below.
-"""""  :tabc[lose][!]   Close current tab page.
-"""""  :tabo[nly][!]    Close all other tab pages.
-"""""  :tabn[ext]               *:tabn* *:tabnext* *gt*
-"""""  :tabp[revious]               *:tabp* *:tabprevious* *gT* *:tabN*
-"""""  :tabfir[st]  Go to the first tab page.
-"""""  :tabl[ast]   Go to the last tab page.
-"""""  :tabd[o] {cmd}   Execute {cmd} in each tab page.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-"
 "
 "au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 "
@@ -190,32 +169,13 @@
 ""aug END
 "
 "
-""" works
-""map <buffer> <F4> :echo 'works' <CR>
-""map <buffer> <M-F4> :echo 'works' <CR>
-""map <buffer> <S-F6> :echo 'works' <CR>
-""map <buffer> UU :echo 'works' <CR>
-""" N O N E   of these work!! (maybe they're os-mapped)
-""map <buffer> <C-F6> :echo 'I suck' <CR>
-""map <buffer> <T-F6> :echo 'I suck' <CR>
-""map <buffer> <D-F6> :echo 'I suck' <CR>
-""map <buffer> <M-C-F6> :echo 'I suck' <CR>
-""map <buffer> <C-M-F6> :echo 'I suck' <CR>
-""map <buffer> <S-M-F6> :echo 'I suck' <CR>
-""map <buffer> <C-F3> :echo 'I suck' <CR>
-""map <buffer> <A-v> :echo 'I suck' <CR>
-""map <buffer> <M-v> :echo 'I suck' <CR>
-"
 """""                       *skeleton* *template*
 ""To read a skeleton (template) file when opening a new file: >
 ""  :autocmd BufNewFile  *.c    0r ~/vim/skeleton.c
 ""  :autocmd BufNewFile  *.h    0r ~/vim/skeleton.h
 ""  :autocmd BufNewFile  *.java 0r ~/vim/skeleton.java
-"colorscheme BlackSea
-"
-"
-""verbose nmap <buffer> <F9> :PymodeLintAuto <CR>
 
+  
 """ :compiler
 "Bundle 'tpope/vim-repeat'
 "Bundle 'tpope/vim-commentary'
