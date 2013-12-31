@@ -1,3 +1,12 @@
+
+
+if ! exists('loaded_less')
+    let loaded_less = 0
+endif
+
+"if loaded_less == 1
+"endif
+
 set nocompatible
 
 filetype off
@@ -12,9 +21,13 @@ set nofoldenable
 set wildmenu
 set ttyfast
 set encoding=utf-8 nobomb
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-set undodir=~/.vim/undo
+if loaded_less == 1
+    set noswapfile
+else
+    set backupdir=~/.vim/backups
+    set directory=~/.vim/swaps
+    set undodir=~/.vim/undo
+endif
 set modeline
 set modelines=4
 set cursorline
@@ -36,9 +49,11 @@ set showcmd
 set scrolloff=3
 set switchbuf+=useopen
 set wildmode=longest,list
-"set autochdir
-set tags=./tags;~
-
+set autochdir
+"set tags=./tags;~
+"set tags=./tags,tags;
+"set tags=./tags;/
+set tags=./tags,tags,~/virtualenv/**/tags,/usr/local/Cellar/python*/**/tags,~/git/mainline/**/tags
 set bufhidden=hide
 
 syntax on
@@ -68,6 +83,7 @@ Bundle 'jmcantrell/vim-virtualenv'
 let g:virtualenv_auto_activate = 1
 let g:virtualenv_directory = "$HOME/virtualenv"
 Bundle 'scrooloose/nerdtree'
+"let NERDTreeBookmarksFile = "$HOME/.vim/nerdtree_bookmarks"
 
 let NERDTreeQuitOnOpen = 1
 
@@ -76,11 +92,10 @@ let NERDTreeQuitOnOpen = 1
 "Bundle 'vim-scripts/vcscommand.vim'
 
 
-"Bundle 'MarcWeber/vim-addon-mw-utils'
-"Bundle 'tomtom/tlib_vim'
-"Bundle 'garbas/vim-snipmate'
-"" Optional:
-""Bundle 'honza/vim-snippets'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
 
 Bundle 'tpope/vim-fugitive'
 
@@ -147,8 +162,10 @@ map ,hh :h stnbu<CR>
 map ,tp :set paste!<CR>
 map ,tl :set list!<CR>
 map ,vh "zyiw:exe "h ".@z.""<CR>  " help for word under cursor
+map ,tt :TlistToggle<CR>
 map <silent> ,gs :call WebSearch(expand("<cword>"))<cr><cr>  " 'google' word under cursor
 map <silent> ,ol :call OpenBrowser(expand("<cWORD>"))<cr><cr>
+map ,nt :NERDTreeToggle<CR>
 vmap > >gv
 vmap < <gv
 

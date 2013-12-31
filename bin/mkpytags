@@ -1,0 +1,172 @@
+#!/usr/bin/env python
+
+import re
+import os
+import sys
+import pyctags
+import argparse
+import magic
+
+DEBUG = False
+WARN = True
+expr = '^[ \t]*(def|class)[ \t]+([a-zA-Z0-9_]+)[ \t]*[:\(]'
+matcher = re.compile(expr)
+
+def debug(msg):
+    if not DEBUG:
+        return
+    print msg
+
+def warn(msg):
+    if not WARN:
+        return
+    print >>sys.stderr, msg
+
+parser = argparse.ArgumentParser(description='Generate exuberant_ctags')
+parser.add_argument('-t',
+                    '--types',
+                    dest='types',
+                    metavar='types',
+                    default="text/x-python",
+                    help="(MIME) Types of files to index. 'text/x-python', etc. Comma separated.")
+parser.add_argument('-o',
+                    '--output',
+                    dest='output',
+                    default="-",
+                    help='ctags output file path.')
+parser.add_argument('-l',
+                    '--library',
+                    dest='library',
+                    default='native',
+                    help='"Library": native or pyctags.')
+#parser.add_argument('-p',
+#                    '--sys-path',
+#                    dest='sys_path',
+#                    action='store_true',
+#                    default=False,
+#                    help='Forget all other options and try to generate a tags file for everything in sys.path')
+parser.add_argument('dirs',
+                    #required=True,
+                    help='Directories to be indexed.',
+                    nargs='*')
+
+args = parser.parse_args()
+
+
+args.types.lower()
+args.types = args.types.split(',')
+args.types = [t.lower() for t in args.types]
+
+#if args.sys_only:
+#    args.dirs = [p for p in sys.path if p.strip() and os.path.exists(p) and os.access(p, os.W_OK)]
+#    CWD = True
+#else:
+#    CWD = False
+
+candidate_files = []
+candidate_dirs = []
+for index, node in enumerate(args.dirs):
+    if os.path.isdir(node):
+        candidate_dirs.append(args.dirs[index])
+    elif os.path.isfile(node):
+        candidate_files.append(args.dirs[index])
+    else:
+        warn('WARNING: ignoring {}, which is neither a file nor a dir'.format(node))
+
+def type_by_extension(file, type):
+    # see also mimetypes.types_map
+    type_map = {
+        'py': ['text/x-python'],
+        'ipy': ['text/x-python'],
+        'pyx': ['text/x-python'],
+    }
+    extension = file.split('.')
+    if len(extension) < 2:
+        if os.access(file, os.X_OK):
+            return None  # no extension indeterminate
+        return False
+    extension = extension[-1].lower()
+    if extension in type_map and type in type_map[extension]:
+        return True
+    else:
+        return False
+
+
+def is_type_match(file):
+    try:
+        file = file.decode()  # because pyctags is going to do this anyway
+    except UnicodeDecodeError:
+        warn('WARNING: cannot decode filename: {}'.format(file))
+        return False
+    for type in args.types:
+        by_extension = type_by_extension(file, type)
+        if by_extension is not None:
+            return by_extension
+    file_magic = magic.from_file(file, mime=True).lower().strip()
+    match = file_magic in args.types
+    magic_test_results = '{}'.format(file)
+    magic_test_results += '     match = {} in {} --> {}'.format(file_magic, args.types, match)
+    debug(magic_test_results)
+    return match
+
+for root in candidate_dirs:
+    for directory in os.walk(root):
+        dirpath, _, files = directory
+        for file in files:
+            full_path = os.path.join(dirpath, file)
+            if os.path.isfile(full_path):
+                candidate_files.append(full_path)
+            else:
+                warn('WARNING: ignoring {}, which is not a regular file'.format(full_path))
+
+candidate_files = sorted(set(candidate_files))  # ??
+
+debug('building file list')
+target_files = []
+for file in candidate_files:
+    if is_type_match(file):
+        target_files.append(file)
+
+def treat_file(filename):
+    global matcher
+    tags = []
+    try:
+        fp = open(filename, 'r')
+    except:
+        warn('Cannot open %s\n' % filename)
+        return []
+    base = os.path.basename(filename)
+    if base[-3:] == '.py':
+        base = base[:-3]
+    s = base + '\t' + filename + '\t' + '1\n'
+    tags.append(s)
+    while 1:
+        line = fp.readline()
+        if not line:
+            break
+        m = matcher.match(line)
+        if m:
+            content = m.group(0)
+            name = m.group(2)
+            s = name + '\t' + filename + '\t/^' + content + '/\n'
+            tags.append(s)
+    return tags
+def get_py_tags(files):
+    tags = []
+    for filename in files:
+        tags.extend(treat_file(filename))
+    return tags
+
+if args.library.lower() == 'native':
+    debug('running ctags...')
+    lines = get_py_tags(files=target_files)
+    debug('opening output file')
+    with open(args.output, 'w') as output:
+        output.writelines(lines)
+elif args.library.lower() == 'pyctags':
+    ctags = pyctags.exuberant_ctags(files=target_files)
+    ctags.generate_tagfile(args.output)
+else:
+    warn('WAT!?')
+    sys.exit(1)
+
