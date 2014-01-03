@@ -6,6 +6,7 @@ from glob import glob
 
 
 def log(msg):
+    return
     print msg
 
 REPOS = {}
@@ -55,6 +56,12 @@ def add_to_out(output, string):
         strings = string.splitlines()
         output.extend(strings)
 
+def get_status(path):
+    repo = get_repo(path)
+    if repo is None:
+        return '<No Repo Found>'
+    return repo.git.status()
+
 def add(paths):
     if isinstance(paths, str):
         paths = glob(paths)
@@ -71,7 +78,6 @@ def add(paths):
         repo.index.add(paths)
         log('added file(s) {} to repo {}'.format(paths, repo))
     except OSError:
-        print 'file does not exist'
         raise
 
 def commit():

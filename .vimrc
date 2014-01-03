@@ -56,6 +56,8 @@ set autochdir
 set tags=./tags,tags,~/virtualenv/**/tags,/usr/local/Cellar/python*/**/tags,~/git/mainline/**/tags
 set bufhidden=hide
 
+let mapleader = ','
+
 syntax on
 
 set rtp+=~/.vim/plugin
@@ -155,17 +157,17 @@ map <C-H> <C-W>h<C-W>_
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 map <C-L> <C-W>l<C-W>_
-map ,ts :set spell! spelllang=en_us<CR>
-map ,sv :source ~/.vimrc<CR>   
-map ,ev :e ~/.vimrc<CR>
-map ,hh :h stnbu<CR>
-map ,tp :set paste!<CR>
-map ,tl :set list!<CR>
-map ,vh "zyiw:exe "h ".@z.""<CR>  " help for word under cursor
-map ,tt :TlistToggle<CR>
-map <silent> ,gs :call WebSearch(expand("<cword>"))<cr><cr>  " 'google' word under cursor
-map <silent> ,ol :call OpenBrowser(expand("<cWORD>"))<cr><cr>
-map ,nt :NERDTreeToggle<CR>
+map <Leader>ts :set spell! spelllang=en_us<CR>
+map <Leader>sv :source ~/.vimrc<CR>   
+map <Leader>ev :e ~/.vimrc<CR>
+map <Leader>hh :h stnbu<CR>
+map <Leader>tp :set paste!<CR>
+map <Leader>tl :set list!<CR>
+map <Leader>vh "zyiw:exe "h ".@z.""<CR>  " help for word under cursor
+map <Leader>tt :TlistToggle<CR>
+map <silent> <Leader>gs :call WebSearch(expand("<cword>"))<cr><cr>  " 'google' word under cursor
+map <silent> <Leader>ol :call OpenBrowser(expand("<cWORD>"))<cr><cr>
+map <Leader>nt :NERDTreeToggle<CR>
 vmap > >gv
 vmap < <gv
 
