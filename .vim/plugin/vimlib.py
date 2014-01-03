@@ -35,30 +35,31 @@ def output_to_window(output):
 
     vim.command("""
     function! g:OpenVimLibBuffer(string)
+        "setlocal noreadonly
+        "setlocal modifiable
         let scr_bufnum = bufnr(g:VimLibBufferName)
         let old_x = @x
         let @x = a:string
-        setlocal noreadonly
-        setlocal modifiable
         if scr_bufnum == -1
-            exe "new " . g:VimLibBufferName
+            silent exe "new " . g:VimLibBufferName
             call g:SetTempBufferAttributes()
         else
             let scr_winnum = bufwinnr(scr_bufnum)
             if scr_winnum != -1
                 if winnr() != scr_winnum
-                    exe scr_winnum . "wincmd w"
+                    silent exe scr_winnum . "wincmd w"
                     call g:SetTempBufferAttributes()
                 endif
             else
-                exe "split +buffer" . scr_bufnum
+                silent exe "split +buffer" . scr_bufnum
                 call g:SetTempBufferAttributes()
             endif
         endif
         silent 1,$delete _
         silent! put x
-        setlocal nomodifiable
-        setlocal readonly
+        exec "normal 1G"
+        "setlocal nomodifiable
+        "setlocal readonly
         let @x = old_x
     endfunction
     "exec "autocmd BufEnter ". g:VimLibBufferName ." g:SetTempBufferAttributes()"
@@ -124,6 +125,3 @@ def get_menu():
     for key, entry in menu.items():
         output.append('{}) {}'.format(key, entry.desc))
     return output
-
-output_to_window(get_menu())
-
