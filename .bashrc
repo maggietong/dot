@@ -1,4 +1,6 @@
 
+export LD_LIBRARY_PATH=/net/savbu-plt-utl4/qali/tools/redhat_61/lib
+
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 if [ -f ~/.current_tree ] ; then
@@ -6,14 +8,21 @@ if [ -f ~/.current_tree ] ; then
     true
 fi
 
+if [ -d /ws/miburr-sjc/tools/bin ] ; then
+    PATH="/ws/miburr-sjc/tools/bin:$PATH"
+fi
+
 
 # wget -O - -q http://http.us.debian.org/debian/pool/main/b/bash-completion/bash-completion_2.0-1_all.deb
 # ar x /tmp/f.deb
 
-export LOCAL_VIM="/usr/local/Cellar/vim/7.4.052/bin/vim"
-if [ ! -e "${LOCAL_VIM}" ] ; then
-    export LOCAL_VIM=/usr/bin/vim
-fi
+VIMS="/usr/local/Cellar/vim/7.4.052/bin/vim /ws/miburr-sjc/tools/bin/vim /usr/bin/vim /bin/vim" 
+for VIM in $VIMS ; do
+    if [ -e "${VIM}" ] ; then
+        export LOCAL_VIM="${VIM}"
+        break
+    fi
+done
 
 export MYUCS=bb17-spam48
 export CURRENT_TREE=~/git/mainline
