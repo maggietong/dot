@@ -38,7 +38,7 @@ SERVERNAME='__DEFAULT__'  # must be in caps for no apparent reason
 ## 15 is the min to include line numbers for all parse *.vim files
 #rm -f $LOGFILE
 
-if "${LOCAL_VIM}" -version | grep -qe '+clientserver' ; then
+if "${LOCAL_VIM}" --version | grep -qe '+clientserver' ; then
     SERVER_LIST="$(${LOCAL_VIM} --serverlist)"
     SERVER_COUNT=$(echo "$SERVER_LIST" | wc -l)
     if [ $SERVER_COUNT -gt 1 ] ; then
