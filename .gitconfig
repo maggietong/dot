@@ -1,0 +1,18 @@
+[core]
+	excludesfile = ~/.gitignore
+[push]
+	default = current
+[diff]
+	tool = vimdiff
+[difftool "vimdiff"]
+	path = bin/vimdiff
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+[merge]
+	tool = vimdiff
+[alias]
+	commit-undo = reset --soft HEAD^
+[include]
+	file = .gitconfig.work

@@ -1,11 +1,10 @@
 *~
 .DS_Store
-uxo.py
 .netrwhist
 *.swp
 virtualenv/bin/python
 *.pyc
-*.pyx
+*.pyo
 .vim/bundle/*
 .ipython/README
 .ipython/profile_default/history.sqlite

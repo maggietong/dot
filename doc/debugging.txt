@@ -45,3 +45,7 @@ https://github.com/nvie/vim_bridge
 # 9926  history | grep -e server
 # 9927  history | grep -e server | sed 's/^/#/'
 # 9928  history | grep -e server | sed 's/^/#/' >> ~/dot/doc/debugging.txt 
+ 1626  ## figleaf2html -d /tmp/fl .figleaf 
+ 1627  ## figleaf glados/tbn.py -s sandbox/miburr/glados_examples/trivial/config.py 
+ 1631  history | grep '162.* ## fig'
+ 1632  history | grep '162.* ## fig' >> ~/dot/doc/debugging.txt 

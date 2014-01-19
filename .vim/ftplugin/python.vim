@@ -2,7 +2,8 @@
 
 nnoremap <silent> <buffer> <Leader>rl :PymodeLint<CR>
 "nnoremap <silent> <buffer> <Leader>rb :PymodeRun<CR>
-nnoremap <buffer> <Leader>rb :w<CR>:!/usr/bin/env python %:p <CR>
+"nnoremap <buffer> <Leader>rb :w<CR>:!/usr/bin/env python %:p <CR>
+nnoremap <buffer> <Leader>rb :w<CR>:!/usr/local/bin/python %:p <CR>
 nnoremap <buffer> <Leader>rd :w<CR>:!/usr/bin/env python -m pudb.run %:p <CR><CR>
 nnoremap <silent> <buffer> q :lclose \| pclose <CR>
 

@@ -4,6 +4,8 @@ if ! exists('loaded_less')
     let loaded_less = 0
 endif
 
+let python_highlight_all = 1
+
 "if loaded_less == 1
 "endif
 
@@ -49,7 +51,7 @@ set showcmd
 set scrolloff=3
 set switchbuf+=useopen
 set wildmode=longest,list
-set autochdir
+"set autochdir
 "set tags=./tags;~
 "set tags=./tags,tags;
 "set tags=./tags;/
@@ -94,12 +96,15 @@ let NERDTreeQuitOnOpen = 1
 "Bundle 'vim-scripts/vcscommand.vim'
 
 
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
+"Bundle 'MarcWeber/vim-addon-mw-utils'
+"Bundle 'tomtom/tlib_vim'
+"Bundle 'garbas/vim-snipmate'
+"Bundle 'honza/vim-snippets'
 
 Bundle 'tpope/vim-fugitive'
+
+"Bundle 'Shougo/vimshell.vim'
+"Bundle 'Shougo/vimproc.vim'
 
 let g:pymode = 1
 let g:pymode_doc = 1
@@ -108,7 +113,7 @@ let g:pymode_lint = 1
 let g:pymode_virtualenv = 1
 let g:pymode_lint_message = 0
 let g:pymode_lint_cwindow = 1
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257']
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'pylint']
 let g:pymode_lint_write = 0
 let g:pymode_lint_on_fly = 0
 let g:pymode_lint_ignore = 'E501,W'
