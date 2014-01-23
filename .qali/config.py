@@ -55,7 +55,7 @@ else:
     logger.setLevel(log_level)
     logger.addHandler(console)
 
-glados.output_root = '/tmp/xig'
+#glados.output_root = '/tmp/xig'
 
 try:
     mike = ConfigSpace('mike')

@@ -37,6 +37,7 @@ set lcs=tab:▸\ ,trail:·,nbsp:_
 set list
 set hlsearch
 set ignorecase
+set smartcase
 set incsearch
 set laststatus=2
 set noerrorbells
@@ -214,3 +215,5 @@ endfunction
 function! MyFugitive()
   return exists('*fugitive#head') ? fugitive#head() : ''
 endfunction
+
+highlight Folded ctermbg=0
