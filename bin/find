@@ -1,7 +1,9 @@
 #!/bin/sh
 
-if [ "$(uname)x" == "Darwinx" ] && [ ! -e "$1" ] ; then
-    /usr/bin/find . "$@"
+GFIND=$(which gfind || true)
+
+if [ ! -z "${GFIND}" ] ; then
+    "${GFIND}" "$@"
 else
     /usr/bin/find "$@"
 fi

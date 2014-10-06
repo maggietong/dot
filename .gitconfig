@@ -3,7 +3,7 @@
 [push]
 	default = current
 [diff]
-	tool = vimdiff
+	tool = diffmerge
 [difftool "vimdiff"]
 	path = bin/vimdiff
 [difftool]
@@ -11,8 +11,16 @@
 [mergetool]
 	prompt = false
 [merge]
-	tool = vimdiff
+	tool = diffmerge
 [alias]
 	commit-undo = reset --soft HEAD^
 [include]
 	file = .gitconfig.work
+[user]
+	name = Mike Burr
+	email = miburr@cisco.com
+[difftool "diffmerge"]
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[mergetool "diffmerge"]
+	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	trustExitCode = true

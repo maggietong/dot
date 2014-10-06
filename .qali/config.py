@@ -1,23 +1,27 @@
 import os
 
+
 PFAST = 0
 THREAD = 1
 STANDARD = 2
 PDBG = 3
 STANDARDDBG = 4
 
-mode = PFAST
+#mode = PFAST
 #mode = PDBG
 #mode = THREAD
-#mode = STANDARD
+mode = STANDARD
 #mode = STANDARDDBG
+
 #log_level = 'DEBUG'
 log_level = 'ERROR'
 
-ucs.spy = False
+ucs.spy = True
+#ucs.spy = False
 #iom.preferred_transport = CONSOLE_TRANSPORT
 iom.preferred_transport = complex()
-ucs.identifier = 'bb17.spam48'
+#ucs.identifier = 'dd3.mam96'
+ucs.identifier = 'bb25.run'
 ucs.spyfile = sys.stderr
 os.environ['QALI_CLUSTER'] = ucs.identifier
 
@@ -57,8 +61,18 @@ else:
 
 #glados.output_root = '/tmp/xig'
 
+#raise TestFail('sometfsdfdsafsa')
+#
+#raise TestFail('blade number {0} failed'.format(bladenum))
+
 try:
     mike = ConfigSpace('mike')
 except NameError:
     mike = NameSpace('mike')
 mike.raise_debugger = True
+
+
+#qali_global.nfs_root = '/auto/ucsb-qa/'
+qali_global.nfs_root = '/net/savbu-plt-utl4/qali'
+
+

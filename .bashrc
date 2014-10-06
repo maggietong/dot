@@ -1,44 +1,5 @@
 
-export LD_LIBRARY_PATH=/net/savbu-plt-utl4/qali/tools/redhat_61/lib
-
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-if [ -f ~/.current_tree ] ; then
-    #source `cat ~/.current_tree`/qali/config/qa_bashrc
-    true
-fi
-
-if [ -d /ws/miburr-sjc/tools/bin ] ; then
-    PATH="/ws/miburr-sjc/tools/bin:$PATH"
-fi
-
-
-# wget -O - -q http://http.us.debian.org/debian/pool/main/b/bash-completion/bash-completion_2.0-1_all.deb
-# ar x /tmp/f.deb
-
-VIMS="/usr/local/Cellar/vim/7.4.052/bin/vim /ws/miburr-sjc/tools/bin/vim /usr/bin/vim /bin/vim" 
-for VIM in $VIMS ; do
-    if [ -e "${VIM}" ] ; then
-        export LOCAL_VIM="${VIM}"
-        break
-    fi
-done
-
-export MYUCS=bb17-spam48
-export CURRENT_TREE=~/git/mainline
-export PYTHONUSERBASE=~/.python
-
-export PYTHONPATH=""
-
-if [ ! -z "${CURRENT_TREE}" -a -e "${CURRENT_TREE}" ] ;then
-    export PYTHONPATH=$CURRENT_TREE:$CURRENT_TREE/qali/extern:$PYTHONPATH
-fi
-
-if [ ! -z "${PYTHONUSERBASE}" -a -e "${PYTHONUSERBASE}" ] ;then
-    export PYTHONPATH=$PYTHONPATH:$PYTHONUSERBASE
-fi
-
-export PYTHONSTARTUP=$PYTHONUSERBASE/startup.py
 
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
@@ -78,15 +39,20 @@ if [ -e ~/git/mainline ] ; then
     cd ~/git/mainline
 fi
 
-alias printbash='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=bash'
-alias printc='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=c'
-alias printpy='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=python'
-alias printpython='enscript -G -M Letter --color -DDuplex:true --pretty-print=python'
-alias printtcl='enscript -2Gr -M Letter --color -DDuplex:true --pretty-print=tcl'
-alias tabloidpy='enscript -G -M Tabloid --color -DDuplex:true --pretty-print=python'
-alias tabloidsh='enscript -G -M Tabloid --color -DDuplex:true --pretty-print=sh'
-alias xcopy=pbcopy
-
 if [ -d ~/bin ] ; then
     PATH=~/bin:"$PATH"
 fi
+
+# Never, ever lose any history!
+export HISTCONTROL=ignoredups:erasedups
+## http://superuser.com/questions/479726/how-to-get-infinite-command-history-in-bash
+export HISTSIZE="nnnnnn..."
+export HISTFILESIZE="nnnnnn..."
+shopt -s histappend
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+alias editor=vim
+
+
+export EDITOR=editor
+export PAGER=pager
+

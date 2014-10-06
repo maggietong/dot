@@ -1,5 +1,8 @@
 #!/bin/sh
 
+less "$@"
+exit $?
+
 if which vimless > /dev/null ; then
     vimless "$@"
 else

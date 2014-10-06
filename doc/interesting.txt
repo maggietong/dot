@@ -1,0 +1,6 @@
+https://github.com/miohtama/vvv
+http://slash.readthedocs.org/
+https://pypi.python.org/pypi/MacFSEvents
+http://commandlinemac.blogspot.com/2008/12/spotlight-on-command-line.html
+sudo chflags sappnd ~/.bash_history
+:bufdo %s/pattern/replace/ge | update

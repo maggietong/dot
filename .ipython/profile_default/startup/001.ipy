@@ -1,0 +1,8 @@
+#### -*- Mode: python; encoding: UTF-8;tab-width: 4; indent-tabs-mode:nil; -*- vim: ai ts=4 sts=4 et sw=4 ft=python
+#%load_ext autoreload
+#%autoreload 2
+#
+#import sys
+#import os
+#import re
+#import IPython

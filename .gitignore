@@ -15,3 +15,7 @@ virtualenv/bin/python
 .ipython/profile_default/pid
 tags
 ctags
+BUILDTIME
+/dist/
+/*.egg-info/
+.figleaf
