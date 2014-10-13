@@ -16,8 +16,8 @@ mode = STANDARD
 #log_level = 'DEBUG'
 log_level = 'ERROR'
 
-ucs.spy = True
-#ucs.spy = False
+#ucs.spy = True
+ucs.spy = False
 #iom.preferred_transport = CONSOLE_TRANSPORT
 iom.preferred_transport = complex()
 #ucs.identifier = 'dd3.mam96'
@@ -72,7 +72,7 @@ except NameError:
 mike.raise_debugger = True
 
 
-#qali_global.nfs_root = '/auto/ucsb-qa/'
-qali_global.nfs_root = '/net/savbu-plt-utl4/qali'
+qali_global.nfs_root = '/auto/ucsb-qa/'
+#qali_global.nfs_root = '/net/savbu-plt-utl4/qali'
 
 

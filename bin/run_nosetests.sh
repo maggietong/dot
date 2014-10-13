@@ -7,6 +7,9 @@ else
     TESTS="$@"
 fi
 
+echo $TESTS
+exit
+
 rm -rf /tmp/cover
 mkdir /tmp/cover
 rm -f /tmp/n.html

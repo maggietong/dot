@@ -7,6 +7,8 @@ os.unsetenv('PAGER')
 
 sys.path.insert(0, os.path.expanduser('~/.ipython/'))
 
+import _ipyutils
+
 import monkeypatches.consoleapp
 from IPython import consoleapp
 
@@ -16,11 +18,13 @@ consoleapp.IPythonConsoleApp.init_kernel_manager = monkeypatches.consoleapp._ini
 
 
 from signal import SIGTERM
+import IPython
 from IPython import start_kernel
 from IPython.html.notebookapp import NotebookApp
 from daemon.runner import DaemonRunner
 from IPython.terminal.console import app as consoleapp
 from IPython import get_ipython
+from IPython.parallel import bind_kernel
 
 GLOBAL_DEBUG = bool(os.getenv('IPYTHON_GLOBAL_DEBUG', False))
 
@@ -34,12 +38,7 @@ def get_notebook_app(argv=[]):
     nbapp = NotebookApp(argv=argv)
     nbapp.info_file = '/Users/miburr/git/stnbu/dot/.ipython/profile_default/security/nbserver-default.json'
     nbapp.initialize(argv=[])
-    #nbapp.write_server_info_file()
     nbapp.start()
-    from IPython.parallel import bind_kernel
-    l = bind_kernel()
-    print(dir(l))
-    print(type(l))
     return nbapp
 
 class IPythonDaemonApp(object):
@@ -84,14 +83,10 @@ class IPythonDaemonApp(object):
                 self.argv.remove('--pydb')
             self.starter = get_notebook_app
         elif self.type == 'console':
-            if '--debug' in self.argv:
-                self.argv.remove('--debug')
-            self.argv.append('-i')
-            self.argv.append('--classic')
             self.stdin_path = sys.stdin
             self.stdout_path = sys.stdout
             self.stderr_path = sys.stderr
-            self.starter = consoleapp.launch_new_instance
+            self.starter = self._embed
         else:
             raise ValueError('Not yet alble to deal with "{0}"'.format(self.type))
 
@@ -106,11 +101,17 @@ class IPythonDaemonApp(object):
         pid = s.session.pid
         return os.kill(pid, SIGTERM)
 
+    def _embed(self, *args, **kwargs):
+        shell = _ipyutils.embed(profile=self.profile)
+        shell()
+
     def run(self):
         return self.starter(argv=self.argv)
 
 
 if __name__ == '__main__':
+
+
 
     def useage():
         print '{0}: read it!\n'.format(os.path.abspath(__file__))

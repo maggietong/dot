@@ -1,20 +1,17 @@
-import os
-import re
-import sys
+# -*- Mode: python; encoding: UTF-8;tab-width: 4; indent-tabs-mode:nil; -*- vim: ai ts=4 sts=4 et sw=4 ft=python
+
+
+#print('YES '*100)
 
 #   from IPython.core.crashhandler import CrashHandler
-#   
+#
 #   #http://ipython.org/ipython-doc/rel-0.10.2/html/interactive/reference.html
 #   sys.excepthook = CrashHandler(app=get_ipython().kernel.parent,
 #                                 call_pbd=False, show_crash_traceback=True)
-#   
-
+#
 
 #from IPython.kernel.config import config_manager as kernel_config
 #kernel_config.write_default_config_file()
-
-
-
 
 #try:
 #    import pudb as debugger

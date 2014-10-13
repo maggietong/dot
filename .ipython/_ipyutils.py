@@ -29,6 +29,11 @@ from IPython.kernel.zmq.session import Session, Message
 from IPython.kernel.zmq import serialize
 from IPython.parallel.client.asyncresult import AsyncResult, AsyncHubResult
 from IPython.parallel.client.view import DirectView, LoadBalancedView
+from IPython.terminal.embed import InteractiveShellEmbed
+
+from IPython.terminal.ipapp import load_default_config, classic_config
+import IPython
+from IPython.config.loader import Config
 
 @decorator
 def spin_first(f, self, *args, **kwargs):
@@ -1639,6 +1644,92 @@ class Client(HasTraits):
         return records
 
 
+def embed(profile='default'):
+    if profile == 'default':
+        cfg = load_default_config()
+    else:
+        cfg = Config()
+    cfg.update(classic_config)
+    shell = InteractiveShellEmbed(config=cfg, user_ns={}, banner2='')
+    return shell
 
+def class_options(instance, inst=None):
+    assert inst is None or isinstance(inst, instance.__class__)
+    c = []
+    for k, v in sorted(instance.class_traits(config=True).items()):
+        c.append((k,v))
+    return c
+
+def all_options(instance):
+    return
+    ip = get_ipython()
+    for key, value in instance.config.iteritems():
+        print(key)
+        print('       value: {0}'.format(value))
+
+
+#        configurables = [ c for c in self.shell.configurables
+#                          if c.__class__.class_traits(config=True) ]
+
+#configurable.class_get_help
+
+
+#     x = get_ipython()
+#
+#
+#     for m in x.configurables:
+#         print m.__class__.__name__
+#         m.class_traits()
+
+
+def fooxx(cls, trait, inst=None):
+    assert inst is None or isinstance(inst, cls)
+    option_name = '{0}.{1}'.format(cls.__name__, trait.name)
+    if inst is not None:
+        current_value = getattr(inst, trait.name)
+    else:
+        current_value = None
+    help = trait.get_metadata('help') is None and ''
+    default_value = repr(trait.get_default_value())
+    return {
+        'name': option_name,
+        'current_value': current_value,
+        'help': help,
+        'default_value': default_value,
+    }
+
+def get_global_config():
+    the_global_config = {}
+    for m in get_ipython().configurables:
+        key = m.__class__.__name__
+        value = {}
+        traits = m.class_traits(config=True)
+        for k, v in traits.iteritems():
+            result = fooxx(m.__class__, trait=v, inst=m)
+            value[result['name']] = result
+        #value = m.class_traits()
+        the_global_config[key] = value
+    return the_global_config
+
+def make_py_config():
+    config = []
+    for class_name, traits in get_global_config().iteritems():
+        if False:
+            config.append('####### {0}'.format(class_name))
+        entry = []
+        for trait in traits.values():
+            if False:
+                entry.append('# {0}'.format(trait['help']))
+            if trait['current_value'] is not None:
+                value = trait['current_value']
+            else:
+                value = trait['default_value']
+            value = repr(value)
+            entry.append('#c.{0} = {1}'.format(trait['name'], value))
+
+        config.append('\n'.join(entry))
+
+    open('/tmp/rrrrr', 'wb').write('\n'.join(config))
+    return config
 
 __all__ = ['Client', 'f']

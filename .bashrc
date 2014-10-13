@@ -54,5 +54,4 @@ alias editor=vim
 
 
 export EDITOR=editor
-export PAGER=pager
 
