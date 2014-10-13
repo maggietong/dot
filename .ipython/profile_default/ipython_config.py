@@ -51,6 +51,12 @@ c.IPythonConsoleApp.nosep = True
 #c.IPythonConsoleApp.sshserver =
 c.InteractiveShell.autocall = False
 #c.InteractiveShellApp.module_to_run = 'startup'
+
+
+c.InteractiveShellApp.extensions = ['autoreload']
+c.InteractiveShellApp.exec_lines = ['%autoreload 2']
+
+
 #c.NotebookApp.aliases =
 #c.NotebookApp.allow_credentials =
 #c.NotebookApp.allow_origin =

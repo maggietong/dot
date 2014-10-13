@@ -1720,6 +1720,8 @@ def make_py_config():
         for trait in traits.values():
             if False:
                 entry.append('# {0}'.format(trait['help']))
+            #if trait['current_value'] == trait['default_value']:
+            #    continue
             if trait['current_value'] is not None:
                 value = trait['current_value']
             else:
