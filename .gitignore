@@ -19,3 +19,5 @@ BUILDTIME
 /dist/
 /*.egg-info/
 .figleaf
+
+.ipython/profile_default/static
