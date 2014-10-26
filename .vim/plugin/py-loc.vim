@@ -3,6 +3,10 @@
 " Credit goes to Michal Vitecek <fuf-at-mageo-dot-cz>, according to the source.
 "
 
+if !has("python")
+    finish
+endif
+
 python << EOS
 
 import re

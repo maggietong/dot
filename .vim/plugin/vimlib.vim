@@ -1,3 +1,6 @@
+if !has("python")
+    finish
+endif
 
 let s:plugin_root = escape(expand('<sfile>:p'), '\')
 
