@@ -55,3 +55,6 @@ alias editor=vim
 
 export EDITOR=editor
 
+if [ -e ~/.bashrc.local ] ; then
+    . ~/.bashrc.local
+fi
