@@ -87,6 +87,7 @@ Bundle 'ynkdir/vim-vimlparser'
 Bundle 'jsatt/python_fn'
 Bundle 'vim-scripts/python_match.vim'
 Bundle 'klen/python-mode'
+let g:pymode_options_max_line_length = 119
 Bundle 'itchyny/lightline.vim'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'jamessan/vim-gnupg'
