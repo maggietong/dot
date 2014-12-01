@@ -6,7 +6,7 @@ unset PYTHONSTARTUP
 
 source ~/virtualenv/bandersnatch/bin/activate
 
-bandersnatch -c $VIRTUAL_ENV/etc/bandersnatch.conf mirror
+nohup bandersnatch -c $VIRTUAL_ENV/etc/bandersnatch.conf mirror > /dev/null 2>&1 &
 
 ##### Config looks like ...
 # [mirror]

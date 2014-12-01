@@ -1,5 +1,11 @@
 # -*- Mode: python; encoding: UTF-8;tab-width: 4; indent-tabs-mode:nil; -*- vim: ai ts=4 sts=4 et sw=4 ft=python
 
+import sys
+
+try:
+    import pudb.ipython
+except ImportError:
+    pass  # todo, how do you properly log things here?
 
 #print('YES '*100)
 
@@ -13,22 +19,20 @@
 #from IPython.kernel.config import config_manager as kernel_config
 #kernel_config.write_default_config_file()
 
-#try:
-#    import pudb as debugger
-#except ImportError:
-#    import pdb as debugger
-#
-#def my_exception_hook(type, value, tb):
-#   if (#hasattr(sys, "ps1") or
-#       not sys.stderr.isatty() or
-#       not sys.stdin.isatty()):
-#       # stdin or stderr is redirected, just do the normal thing
-#       original_hook(type, value, tb)
-#   else:
-#       # a terminal is attached and stderr is not redirected, debug
-#       import traceback
-#       traceback.print_exception(type, value, tb)
-#       debugger.pm()
-#       #traceback.print_stack()
-#
-#sys.excepthook = my_exception_hook
+try:
+    import pudb as debugger
+except ImportError:
+    import pdb as debugger
+
+def my_exception_hook(type, value, tb):
+    if not hasattr(sys, "ps1") or not sys.stderr.isatty() or not sys.stdin.isatty():
+        # stdin or stderr is redirected, just do the normal thing
+        original_hook(type, value, tb)
+    else:
+        # a terminal is attached and stderr is not redirected, debug
+        import traceback
+        traceback.print_exception(type, value, tb)
+        debugger.pm()
+        #traceback.print_stack()
+
+sys.excepthook = my_exception_hook

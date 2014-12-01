@@ -3,6 +3,8 @@ PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
+#export DISTUTILS_DEBUG=true
+
 if which brew > /dev/null 2>&1 ; then
     if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
         . $(brew --prefix)/share/bash-completion/bash_completion
