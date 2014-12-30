@@ -267,3 +267,6 @@ augroup resCur
 augroup END
 
 au BufRead,BufNewFile *.ipy set filetype=python
+
+hi clear SpellBad
+hi SpellBad term=reverse ctermbg=Yellow gui=undercurl guisp=Yellow

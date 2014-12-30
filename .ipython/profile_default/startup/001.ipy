@@ -2,8 +2,8 @@
 
 %load_ext autoreload
 %autoreload 2
+%pprint
 
 import sys
 import os
 import re
-#import IPython
