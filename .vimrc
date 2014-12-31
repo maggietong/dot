@@ -89,10 +89,10 @@ Bundle 'vim-scripts/python_match.vim'
 Bundle 'klen/python-mode'
 let g:pymode_options_max_line_length = 119
 Bundle 'itchyny/lightline.vim'
-Bundle 'jmcantrell/vim-virtualenv'
+"Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'jamessan/vim-gnupg'
-let g:virtualenv_auto_activate = 1
-let g:virtualenv_directory = "$HOME/virtualenv"
+"let g:virtualenv_auto_activate = 1
+"let g:virtualenv_directory = "$HOME/virtualenv"
 Bundle 'scrooloose/nerdtree'
 "let NERDTreeBookmarksFile = "$HOME/.vim/nerdtree_bookmarks"
 
@@ -117,7 +117,8 @@ let g:pymode = 1
 let g:pymode_doc = 1
 let g:pymode_doc_bind = 'K'
 let g:pymode_lint = 1
-let g:pymode_virtualenv = 1
+let g:pymode_virtualenv = 0
+let g:virtualenv_loaded = 1
 let g:pymode_lint_message = 0
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'pylint']
@@ -127,7 +128,7 @@ let g:pymode_lint_ignore = 'E501,W'
 let g:pymode_rope = 0
 let g:pymode_breakpoint = 1
 let g:pymode_trim_whitespaces = 1
-let g:pymode_run_key = 'E'
+let g:pymode_run_key = "<C-S-6>"
 let g:pymode_folding = 0
 let g:pymode_indent = 1
 let g:pymode_motion = 1
@@ -140,6 +141,7 @@ let g:pymode_syntax_all = 1
 let g:pymode_warnings = 1
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_unmodified = 0
+let g:pymode_run_bind = "<C-S-6>"
 
 function! s:DiffWithSaved()
   let filetype=&ft
@@ -270,3 +272,6 @@ au BufRead,BufNewFile *.ipy set filetype=python
 
 hi clear SpellBad
 hi SpellBad term=reverse ctermbg=Yellow gui=undercurl guisp=Yellow
+
+
+"let g:ycm_server_log_level = 'debug'

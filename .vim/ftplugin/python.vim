@@ -9,18 +9,18 @@ nnoremap <silent> <buffer> q :lclose \| pclose <CR>
 
 autocmd BufWritePre *.py call g:CleanWhiteSpace()
 
-function! VirtualEnvoStatus()
-    if ! g:virtualenv_loaded
-        return ''
-    endif
-    return 'PYVE:'. virtualenv#statusline()
-endfunction
+"function! VirtualEnvoStatus()
+"    if ! g:virtualenv_loaded
+"        return ''
+"    endif
+"    return 'PYVE:'. virtualenv#statusline()
+"endfunction
 
 let s:py_active_left = [ 've_status', 'py_loc' ]
 let s:py_component_function = {
 \ 'py_loc': 'TagInStatusLine',
-\ 've_status': 'VirtualEnvoStatus',
 \}
+"\ 've_status': 'VirtualEnvoStatus',
 
 call extend(g:lightline.component_function, s:py_component_function)
 call add(g:lightline.active.left, s:py_active_left)

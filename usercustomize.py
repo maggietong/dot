@@ -96,3 +96,8 @@ def enable_debug_hook():
         pass
 
 enable_debug_hook()
+
+for p in '/Users/miburr/git/stnbu/direg', '/Users/miburr/git/stnbu/pynaut':
+    if p in sys.path:
+        sys.path.remove(p)
+
