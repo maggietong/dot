@@ -1,9 +1,0 @@
-#!/bin/sh
-
-GFIND=$(which gfind || true)
-
-if [ ! -z "${GFIND}" ] ; then
-    "${GFIND}" "$@"
-else
-    /usr/bin/find "$@"
-fi

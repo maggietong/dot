@@ -70,6 +70,10 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
+Bundle 'jmcantrell/vim-virtualenv'
+let g:virtualenv_auto_activate = 1
+let g:virtualenv_directory = "$HOME/virtualenv"
+
 Bundle 'vim-scripts/taglist.vim'
 let Tlist_Use_Horiz_Window=1
 
@@ -79,9 +83,9 @@ Bundle 'eldridgejm/tslime_ipython'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'qualiabyte/vim-colorstepper'
 Bundle 'Valloric/YouCompleteMe'
-let g:ycm_collect_identifiers_from_tags_files = 0
-let g:ycm_cache_omnifunc = 0
-let g:ycm_server_keep_logfiles = 1
+"let g:ycm_collect_identifiers_from_tags_files = 0
+"let g:ycm_cache_omnifunc = 0
+"let g:ycm_server_keep_logfiles = 1
 Bundle 'syngan/vim-vimlint'
 Bundle 'ynkdir/vim-vimlparser'
 Bundle 'jsatt/python_fn'
@@ -89,10 +93,7 @@ Bundle 'vim-scripts/python_match.vim'
 Bundle 'klen/python-mode'
 let g:pymode_options_max_line_length = 119
 Bundle 'itchyny/lightline.vim'
-"Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'jamessan/vim-gnupg'
-"let g:virtualenv_auto_activate = 1
-"let g:virtualenv_directory = "$HOME/virtualenv"
 Bundle 'scrooloose/nerdtree'
 "let NERDTreeBookmarksFile = "$HOME/.vim/nerdtree_bookmarks"
 
@@ -117,8 +118,8 @@ let g:pymode = 1
 let g:pymode_doc = 1
 let g:pymode_doc_bind = 'K'
 let g:pymode_lint = 1
-let g:pymode_virtualenv = 0
-let g:virtualenv_loaded = 1
+let g:pymode_virtualenv = 1
+"let g:virtualenv_loaded = 1
 let g:pymode_lint_message = 0
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'pylint']

@@ -6,6 +6,7 @@ import logging
 import __builtin__
 import traceback
 from glob import glob
+import site
 
 _omnilog = logging.getLogger('omnilog')
 log_file_path = '/tmp/global_python_log.log'
@@ -15,6 +16,8 @@ file_formatter = logging.Formatter('%(message)s')
 fh.setFormatter(file_formatter)
 fh.setLevel(logging.DEBUG)
 _omnilog.addHandler(fh)
+
+site.addsitedir(os.path.expanduser('~/.python/lib/python_any'))
 
 class OmniLogger(object):
     levels = {
