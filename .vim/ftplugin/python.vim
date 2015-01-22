@@ -5,6 +5,7 @@ nnoremap <silent> <buffer> <Leader>rl :PymodeLint<CR>
 "nnoremap <buffer> <Leader>rb :w<CR>:!/usr/bin/env python %:p <CR>
 nnoremap <buffer> <Leader>rb :w<CR>:!python %:p <CR>
 nnoremap <buffer> <Leader>rd :w<CR>:!python -m pudb.run %:p <CR><CR>
+"nnoremap <buffer> <Leader>rt :w<CR>:!cd expand('%:p:h') ; python setup.py test
 nnoremap <silent> <buffer> q :lclose \| pclose <CR>
 
 autocmd BufWritePre *.py call g:CleanWhiteSpace()

@@ -1,6 +1,0 @@
-#!/bin/sh
-
-#alias pager=cat
-#unset PAGER
-
-/usr/local/Cellar//macvim/7.3-66/MacVim.app/Contents/MacOS/Vim -dR "$2" "$5"

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+open('/tmp/xf.f.', 'w').write('fdsafdsa')
+
 import sys
 import os
 import readline, rlcompleter
@@ -62,8 +64,7 @@ def my_displayhook(value):
 
         pprint.pprint(value)
 sys.displayhook = my_displayhook
-WELCOME = ""
-
+WELCOME = "WHAT IS THIS MESS "*100
 atexit.register(lambda: sys.stdout.write("""%(DarkGray)s
 xxxx foo
 """))

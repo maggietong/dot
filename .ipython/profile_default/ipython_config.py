@@ -10,12 +10,13 @@ c.TerminalInteractiveShell.banner2 = u''
 c.TerminalInteractiveShell.display_banner = False
 
 c.InteractiveShell.separate_in = ''
-c.InteractiveShell.xx_bob = '7777'
 c.InteractiveShell.separate_out = ''
 c.InteractiveShell.separate_out2 = ''
 #c.InteractiveShell.colors = 'NoColor'
 #c.InteractiveShell.xmode = 'Plain'
 c.InteractiveShell.confirm_exit = False
+#c.InteractiveShellApp.extensions = [
+#    'duster',
+#]
 c.IPythonTerminalApp.display_banner = False
-
 c.HistoryManager.db_log_output = True

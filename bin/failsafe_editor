@@ -1,3 +1,0 @@
-#!/bin/sh
-
-/usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim -u NONE -i NONE "$@"

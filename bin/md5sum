@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ "$(uname)x" == "Darwinx" ] && [ -f /usr/local/bin/gmd5sum ] ; then
-    /usr/local/bin/gmd5sum "$@"
-else
-    /usr/bin/md5sum "$@"
-fi

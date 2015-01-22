@@ -40,10 +40,11 @@ export HISTSIZE="nnnnnn..."
 export HISTFILESIZE="nnnnnn..."
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+export EDITOR=vim
+
 alias editor=vim
-
-
-export EDITOR=editor
+alias pager=less
 
 if [ -e ~/.bashrc.local ] ; then
     . ~/.bashrc.local

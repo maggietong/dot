@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+SCRIPT="$1"
+
+TEMPFILE=$(tempfile --suffix='.lineprof')
+
+kernprof --outfile=$TEMPFILE --line-by-line "${SCRIPT}" && python -m line_profiler "${TEMPFILE}"

@@ -3,6 +3,6 @@
 import sys
 
 try:
-    import pudb.ipython
+    pass # import pudb.ipython
 except ImportError:
     pass  # todo, how do you properly log things here?

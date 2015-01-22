@@ -1,36 +1,37 @@
 
-
-if ! exists('loaded_less')
-    let loaded_less = 0
+function! ArgvContains(substring)
+    return (stridx(system("ps -o command= -p" . getpid()), a:substring) != -1)
+endfunction
+function! ArgvHasServername()
+    return ArgvContains('--servername')
+endfunction
+if !ArgvHasServername()
+    silent! exe '!echo "The --servername option is required."'
+    execute 'cquit!'
 endif
+augroup NoSimultaneousEdits
+    autocmd!
+    autocmd SwapExists * :let v:swapchoice = 'q'
+augroup END
+
+set t_Co=256
+"set t_AB=^[[48;5;%dm
+"set t_AF=^[[38;5;%dm
 
 let python_highlight_all = 1
-
-"if loaded_less == 1
-"endif
-
 set nocompatible
-
 filetype off
 filetype plugin indent on
-
 set number
 set shiftwidth=4
-"set tabstop=4
-"set expandtab
 set textwidth=119
 set nofoldenable
 set wildmenu
 set ttyfast
 set encoding=utf-8 nobomb
-set noswapfile
-"if loaded_less == 1
-"    set noswapfile
-"else
-"    set backupdir=~/.vim/backups
-"    set directory=~/.vim/swaps
-"    set undodir=~/.vim/undo
-"endif
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+set undodir=~/.vim/undo
 set modeline
 set modelines=4
 set cursorline
@@ -53,73 +54,91 @@ set showcmd
 set scrolloff=3
 set switchbuf+=useopen
 set wildmode=longest,list
-"set autochdir
-"set tags=./tags;~
-"set tags=./tags,tags;
-"set tags=./tags;/
 set tags=./tags,tags,~/virtualenv/**/tags,/usr/local/Cellar/python*/**/tags,~/git/mainline/**/tags
 set bufhidden=hide
-
 let mapleader = ','
 
 syntax on
+
+" http://stackoverflow.com/questions/3881534/set-python-virtualenv-in-vim
+function LoadVirtualEnv(path)
+    let activate_this = a:path . '/bin/activate_this.py'
+    if getftype(a:path) == "dir" && filereadable(activate_this)
+        python << EOF
+import vim
+activate_this = vim.eval('l:activate_this')
+execfile(activate_this, dict(__file__=activate_this))
+EOF
+    endif
+endfunction
+if has("python")
+    let defaultvirtualenv = $VIRTUAL_ENV
+    if getftype(defaultvirtualenv) == "dir"
+        call LoadVirtualEnv(defaultvirtualenv)
+    endif
+endif
 
 set rtp+=~/.vim/plugin
 set rtp+=~/.vim/bundle/vundle/
 
 call vundle#rc()
 Bundle 'gmarik/vundle'
+Bundle 'thinca/vim-singleton'
+call singleton#enable()
+let master = singleton#get_master()
+if master == ''
+    call singleton#set_master(1)
+else
+    silent! exe '!echo "Only one instance of vim may run at a time. (master=' . master . ')"'
+    execute 'cquit!'
+endif
 
-Bundle 'jmcantrell/vim-virtualenv'
-let g:virtualenv_auto_activate = 1
-let g:virtualenv_directory = "$HOME/virtualenv"
+Bundle 'Valloric/YouCompleteMe'
+" YCM needs the 'real' binary path (e.g. when python is in a virtualenv.)
+" set it here as best we can:
+if has("python")
+python << EOF
+import os
+import sys
+import subprocess
+import vim
+cmd = ('''python -c '''
+       '''"import sys ;'''
+       '''pref = sys.prefix if not hasattr(sys, 'real_prefix') else sys.real_prefix ;'''
+       '''print(pref)"''')
+prefix = subprocess.check_output(cmd, shell=True)
+prefix = prefix.strip()
+cmd = 'let %s = "%s"' % ('g:ycm_path_to_python_interpreter', os.path.join(prefix, 'bin', 'python'))
+vim.command(cmd)
+EOF
+endif
+let g:ycm_collect_identifiers_from_tags_files = 0
+let g:ycm_cache_omnifunc = 0
+let g:ycm_server_keep_logfiles = 1
 
 Bundle 'vim-scripts/taglist.vim'
-let Tlist_Use_Horiz_Window=1
-
 Bundle 'ivyl/vim-bling'
 Bundle 'ivanov/ipython-vimception'
+Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'tpope/vim-fugitive'
 Bundle 'eldridgejm/tslime_ipython'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'qualiabyte/vim-colorstepper'
-Bundle 'Valloric/YouCompleteMe'
-"let g:ycm_collect_identifiers_from_tags_files = 0
-"let g:ycm_cache_omnifunc = 0
-"let g:ycm_server_keep_logfiles = 1
 Bundle 'syngan/vim-vimlint'
 Bundle 'ynkdir/vim-vimlparser'
 Bundle 'jsatt/python_fn'
 Bundle 'vim-scripts/python_match.vim'
-Bundle 'klen/python-mode'
-let g:pymode_options_max_line_length = 119
 Bundle 'itchyny/lightline.vim'
 Bundle 'jamessan/vim-gnupg'
 Bundle 'scrooloose/nerdtree'
-"let NERDTreeBookmarksFile = "$HOME/.vim/nerdtree_bookmarks"
-
-let NERDTreeQuitOnOpen = 1
-
-"http://blog.ant0ine.com/typepad/2007/03/ack-and-vim-integration.html
-"Bundle 'mileszs/ack.vim'
-"Bundle 'vim-scripts/vcscommand.vim'
-
-
-"Bundle 'MarcWeber/vim-addon-mw-utils'
-"Bundle 'tomtom/tlib_vim'
-"Bundle 'garbas/vim-snipmate'
-"Bundle 'honza/vim-snippets'
-
-Bundle 'tpope/vim-fugitive'
-
-"Bundle 'Shougo/vimshell.vim'
-"Bundle 'Shougo/vimproc.vim'
-
+Bundle 'tpope/vim-unimpaired'
+Bundle 'klen/python-mode'
+let g:pymode_options_max_line_length = 119
 let g:pymode = 1
 let g:pymode_doc = 1
 let g:pymode_doc_bind = 'K'
 let g:pymode_lint = 1
-let g:pymode_virtualenv = 1
-"let g:virtualenv_loaded = 1
+let g:pymode_virtualenv = 0
 let g:pymode_lint_message = 0
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'pylint']
@@ -144,13 +163,52 @@ let g:pymode_lint_on_write = 0
 let g:pymode_lint_unmodified = 0
 let g:pymode_run_bind = "<C-S-6>"
 
+if has("python")
+python << EOF
+## sad, ugly hack
+import os
+import sys
+path = os.path.expanduser('/Users/miburr/.vim/bundle/ropevim')
+if os.path.exists(path):
+    sys.path.append(path)
+EOF
+endif
+Bundle 'python-rope/ropevim'
+let ropevim_extended_complete=1
+let ropevim_vim_completion=1
+let ropevim_codeassist_maxfixes = 1
+let ropevim_enable_shortcuts = 1
+let ropevim_guess_project = 1
+let ropevim_enable_autoimport = 1
+let g:ropevim_autoimport_modules = [
+    \ "StringIO",
+    \ "argparse",
+    \ "copy",
+    \ "datetime",
+    \ "glob",
+    \ "imp",
+    \ "itertools",
+    \ "logging",
+    \ "os",
+    \ "pprint",
+    \ "pudb",
+    \ "random",
+    \ "re",
+    \ "shutil",
+    \ "subprocess",
+    \ "sys",
+    \ "tempfile",
+    \ "time",
+    \ "types"]
+let ropevim_autoimport_underlineds = 0
+let ropevim_goto_def_newwin = 1
+
 function! s:DiffWithSaved()
   let filetype=&ft
   diffthis
   vnew | r # | normal! 1Gdd
   diffthis
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-
 endfunction
 com! DiffWithSaved call s:DiffWithSaved()
 
@@ -226,36 +284,20 @@ function! MyFugitive()
 endfunction
 
 highlight Folded ctermbg=0
-" Transparent editing of gpg encrypted files.
-" By Wouter Hanegraaff
+
 augroup encrypted
   au!
-
-  " First make sure nothing is written to ~/.viminfo while editing
-  " an encrypted file.
   autocmd BufReadPre,FileReadPre *.gpg set viminfo=
-  " We don't want a various options which write unencrypted data to disk
   autocmd BufReadPre,FileReadPre *.gpg set noswapfile noundofile nobackup
-
-  " Switch to binary mode to read the encrypted file
   autocmd BufReadPre,FileReadPre *.gpg set bin
   autocmd BufReadPre,FileReadPre *.gpg let ch_save = &ch|set ch=2
-  " (If you use tcsh, you may need to alter this line.)
   autocmd BufReadPost,FileReadPost *.gpg '[,']!gpg2 --decrypt 2> /dev/null
-
-  " Switch to normal mode for editing
   autocmd BufReadPost,FileReadPost *.gpg set nobin
   autocmd BufReadPost,FileReadPost *.gpg let &ch = ch_save|unlet ch_save
   autocmd BufReadPost,FileReadPost *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
-
-  " Convert all text to encrypted text before writing
-  " (If you use tcsh, you may need to alter this line.)
   autocmd BufWritePre,FileWritePre *.gpg '[,']!gpg2 --default-recipient-self -ae 2>/dev/null
-  " Undo the encryption so we are back in the normal text, directly
-  " after the file has been written.
   autocmd BufWritePost,FileWritePost *.gpg u
 augroup END
-
 
 function! ResCur()
   if line("'\"") <= line("$")
@@ -271,8 +313,6 @@ augroup END
 
 au BufRead,BufNewFile *.ipy set filetype=python
 
-hi clear SpellBad
-hi SpellBad term=reverse ctermbg=Yellow gui=undercurl guisp=Yellow
-
-
-"let g:ycm_server_log_level = 'debug'
+"hi clear SpellBad
+"hi SpellBad term=reverse ctermbg=Yellow gui=undercurl guisp=Yellow
+colorscheme gardener
