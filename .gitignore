@@ -23,3 +23,8 @@ BUILDTIME
 .ipython/profile_default/static
 trash/
 /.ropeproject/
+
+*.swm
+*.swn
+*.swo
+
