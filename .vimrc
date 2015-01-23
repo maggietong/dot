@@ -1,3 +1,9 @@
+source ~/.vim/util.vim
+call g:AddPythonPath('~/.vim/bundle/ropevim')
+let defaultvirtualenv = $VIRTUAL_ENV
+if getftype(defaultvirtualenv) == "dir"
+    call LoadVirtualEnv(defaultvirtualenv)
+endif
 
 function! ArgvContains(substring)
     return (stridx(system("ps -o command= -p" . getpid()), a:substring) != -1)
@@ -14,6 +20,7 @@ augroup NoSimultaneousEdits
     autocmd SwapExists * :let v:swapchoice = 'q'
 augroup END
 
+
 set t_Co=256
 "set t_AB=^[[48;5;%dm
 "set t_AF=^[[38;5;%dm
@@ -23,6 +30,7 @@ set nocompatible
 set clipboard=unnamed,unnamedplus
 filetype off
 filetype plugin indent on
+
 set number
 set shiftwidth=4
 set textwidth=119
@@ -56,37 +64,17 @@ set showcmd
 set scrolloff=3
 set switchbuf+=useopen
 set wildmode=longest,list
-set tags=./tags,tags,~/virtualenv/**/tags,/usr/local/Cellar/python*/**/tags,~/git/mainline/**/tags
 set bufhidden=hide
 let mapleader = ','
 
 syntax on
 
-" http://stackoverflow.com/questions/3881534/set-python-virtualenv-in-vim
-function! LoadVirtualEnv(path)
-    let activate_this = a:path . '/bin/activate_this.py'
-    if getftype(a:path) == "dir" && filereadable(activate_this)
-        python << EOF
-import vim
-activate_this = vim.eval('l:activate_this')
-execfile(activate_this, dict(__file__=activate_this))
-EOF
-    endif
-endfunction
-if has("python")
-    let defaultvirtualenv = $VIRTUAL_ENV
-    if getftype(defaultvirtualenv) == "dir"
-        call LoadVirtualEnv(defaultvirtualenv)
-    endif
-endif
-
 set rtp+=~/.vim/plugin
 set rtp+=~/.vim/bundle/vundle/
 
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'thinca/vim-singleton'
+source ~/.vim/bundles.vim
 call singleton#enable()
+let g:singleton#opener = 'drop'
 
 if !singleton#is_master()
     let master = singleton#get_master()
@@ -98,120 +86,6 @@ if !singleton#is_master()
     endif
 endif
 
-Bundle 'Valloric/YouCompleteMe'
-" YCM needs the 'real' binary path (e.g. when python is in a virtualenv.)
-" set it here as best we can:
-if has("python")
-python << EOF
-import os
-import sys
-import subprocess
-import vim
-cmd = ('''python -c '''
-       '''"import sys ;'''
-       '''pref = sys.prefix if not hasattr(sys, 'real_prefix') else sys.real_prefix ;'''
-       '''print(pref)"''')
-prefix = subprocess.check_output(cmd, shell=True)
-prefix = prefix.strip()
-cmd = 'let %s = "%s"' % ('g:ycm_path_to_python_interpreter', os.path.join(prefix, 'bin', 'python'))
-vim.command(cmd)
-EOF
-endif
-let g:ycm_collect_identifiers_from_tags_files = 0
-let g:ycm_cache_omnifunc = 0
-let g:ycm_server_keep_logfiles = 1
-
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'tpope/vim-rsi'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'julienr/vimux-pyutils'
-Bundle 'benmills/vimux'
-Bundle 'ivyl/vim-bling'
-Bundle 'ivanov/ipython-vimception'
-Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'tpope/vim-fugitive'
-Bundle 'eldridgejm/tslime_ipython'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'qualiabyte/vim-colorstepper'
-Bundle 'syngan/vim-vimlint'
-Bundle 'ynkdir/vim-vimlparser'
-Bundle 'jsatt/python_fn'
-Bundle 'vim-scripts/python_match.vim'
-Bundle 'itchyny/lightline.vim'
-Bundle 'jamessan/vim-gnupg'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'klen/python-mode'
-let g:pymode_options_max_line_length = 119
-let g:pymode = 1
-let g:pymode_doc = 1
-let g:pymode_doc_bind = 'K'
-let g:pymode_lint = 1
-let g:pymode_virtualenv = 0
-let g:pymode_lint_message = 0
-let g:pymode_lint_cwindow = 1
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe', 'pep257', 'pylint']
-let g:pymode_lint_write = 0
-let g:pymode_lint_on_fly = 0
-let g:pymode_lint_ignore = 'E501,W'
-let g:pymode_rope = 0
-let g:pymode_breakpoint = 1
-let g:pymode_trim_whitespaces = 1
-let g:pymode_run_key = "<C-S-6>"
-let g:pymode_folding = 0
-let g:pymode_indent = 1
-let g:pymode_motion = 1
-let g:pymode_options = 1
-let g:pymode_quickfix_maxheight = 6
-let g:pymode_quickfix_minheight = 3
-let g:pymode_run = 1
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_warnings = 1
-let g:pymode_lint_on_write = 0
-let g:pymode_lint_unmodified = 0
-let g:pymode_run_bind = "<C-S-6>"
-
-if has("python")
-python << EOF
-## sad, ugly hack
-import os
-import sys
-path = os.path.expanduser('/Users/miburr/.vim/bundle/ropevim')
-if os.path.exists(path):
-    sys.path.append(path)
-EOF
-endif
-Bundle 'python-rope/ropevim'
-let ropevim_extended_complete=1
-let ropevim_vim_completion=1
-let ropevim_codeassist_maxfixes = 1
-let ropevim_enable_shortcuts = 1
-let ropevim_guess_project = 1
-let ropevim_enable_autoimport = 1
-let g:ropevim_autoimport_modules = [
-    \ "StringIO",
-    \ "argparse",
-    \ "copy",
-    \ "datetime",
-    \ "glob",
-    \ "imp",
-    \ "itertools",
-    \ "logging",
-    \ "os",
-    \ "pprint",
-    \ "pudb",
-    \ "random",
-    \ "re",
-    \ "shutil",
-    \ "subprocess",
-    \ "sys",
-    \ "tempfile",
-    \ "time",
-    \ "types"]
-let ropevim_autoimport_underlineds = 0
-let ropevim_goto_def_newwin = 1
-
 function! s:DiffWithSaved()
   let filetype=&ft
   diffthis
@@ -220,11 +94,6 @@ function! s:DiffWithSaved()
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 com! DiffWithSaved call s:DiffWithSaved()
-
-function! g:CleanWhiteSpace()
-    :%s/\s\+$//e
-    "retab
-endfunction
 
 function! OpenBrowser(url)
     execute "!open ". a:url
@@ -235,23 +104,22 @@ function! WebSearch(term)
     call OpenBrowser(l:url)
 endfunction
 
-"map <C-H> <C-W>h<C-W>_
-"map <C-J> <C-W>j<C-W>_
-"map <C-K> <C-W>k<C-W>_
-"map <C-L> <C-W>l<C-W>_
-map <Leader>ts :set spell! spelllang=en_us<CR>
-map <Leader>sv :source ~/.vimrc<CR>   
-map <Leader>ev :e ~/.vimrc<CR>
-map <Leader>hh :h stnbu<CR>
-map <Leader>tp :set paste!<CR>
-map <Leader>tl :set list!<CR>
-map <Leader>vh "zyiw:exe "h ".@z.""<CR>  " help for word under cursor
-map <Leader>tt :TlistToggle<CR>
+map <silent> <C-H> <C-W>h<C-W>_
+map <silent> <C-J> <C-W>j<C-W>_
+map <silent> <C-K> <C-W>k<C-W>_
+map <silent> <C-L> <C-W>l<C-W>_
+map <silent> <Leader>ts :set spell! spelllang=en_us<CR>
+map <silent> <Leader>sv :source ~/.vimrc<CR>   
+map <silent> <Leader>ev :e ~/.vimrc<CR>
+map <silent> <Leader>tp :set paste!<CR>
+map <silent> <Leader>tl :set list!<CR>
+map <silent> <Leader>vh "zyiw:exe "h ".@z.""<CR>  " help for word under cursor
+map <silent> <Leader>tt :TlistToggle<CR>
 map <silent> <Leader>gs :call WebSearch(expand("<cword>"))<cr><cr>  " 'google' word under cursor
 map <silent> <Leader>ol :call OpenBrowser(expand("<cWORD>"))<cr><cr>
-map <Leader>nt :NERDTreeToggle<CR>
-vmap > >gv
-vmap < <gv
+map <silent> <Leader>nt :NERDTreeToggle<CR>
+vmap <silent> > >gv
+vmap <silent> < <gv
 
 let g:lightline = {
       \ 'colorscheme': 'wombat',
@@ -322,7 +190,35 @@ augroup END
 
 au BufRead,BufNewFile *.ipy set filetype=python
 
-"hi clear SpellBad
-"hi SpellBad term=reverse ctermbg=Yellow gui=undercurl guisp=Yellow
-colorscheme gardener
+colorscheme grb256
 
+"nnoremap <C-F1> :silent! !cmd.exe /c start keyhh.exe -\#klink "<C-R><C-W>" "$ASANY9\docs\dbmaen9.chm"<CR><CR>
+"vnoremap <C-F1> :<C-U>let old_reg=@"<CR>gvy:silent!!cmd.exe /cstart keyhh.exe -\#klink "<C-R><C-R>"" ""$ASANY9\docs\dbmaen9.chm"<CR><CR>:let @"=old_reg<CR>:echo ""<CR>
+
+augroup AutoMkdir
+    autocmd!
+    autocmd  BufNewFile  *  :call EnsureDirExists()
+augroup END
+function! EnsureDirExists ()
+    let required_dir = expand("%:h")
+    if !isdirectory(required_dir)
+        call AskQuit("Directory '" . required_dir . "' doesn't exist.", "&Create it?")
+        try
+            call mkdir( required_dir, 'p' )
+        catch
+            call AskQuit("Can't create '" . required_dir . "'", "&Continue anyway?")
+        endtry
+    endif
+endfunction
+
+function! AskQuit (msg, proposed_action)
+    if confirm(a:msg, "&Quit?\n" . a:proposed_action) == 1
+        exit
+    endif
+endfunction
+
+"let $PATH = 'blahblah:/usr/local/Cellar/reattach-to-user-namespace/2.3/bin' 
+"vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
+"nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
+
+"http://vim.wikia.com/wiki/Paste_from_the_clipboard_into_a_new_vim
