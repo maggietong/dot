@@ -20,6 +20,7 @@ set t_Co=256
 
 let python_highlight_all = 1
 set nocompatible
+set clipboard=unnamed,unnamedplus
 filetype off
 filetype plugin indent on
 set number
@@ -35,6 +36,7 @@ set undodir=~/.vim/undo
 set modeline
 set modelines=4
 set cursorline
+set expandtab
 set lcs=tab:▸\ ,trail:·,nbsp:_
 set list
 set hlsearch
@@ -61,7 +63,7 @@ let mapleader = ','
 syntax on
 
 " http://stackoverflow.com/questions/3881534/set-python-virtualenv-in-vim
-function LoadVirtualEnv(path)
+function! LoadVirtualEnv(path)
     let activate_this = a:path . '/bin/activate_this.py'
     if getftype(a:path) == "dir" && filereadable(activate_this)
         python << EOF
@@ -85,12 +87,15 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'thinca/vim-singleton'
 call singleton#enable()
-let master = singleton#get_master()
-if master == ''
-    call singleton#set_master(1)
-else
-    silent! exe '!echo "Only one instance of vim may run at a time. (master=' . master . ')"'
-    execute 'cquit!'
+
+if !singleton#is_master()
+    let master = singleton#get_master()
+    if master == ''
+        call singleton#set_master(1)
+    else
+        silent! exe '!echo "Only one instance of vim may run at a time. (master=' . master . ')"'
+        execute 'cquit!'
+    endif
 endif
 
 Bundle 'Valloric/YouCompleteMe'
@@ -117,6 +122,10 @@ let g:ycm_cache_omnifunc = 0
 let g:ycm_server_keep_logfiles = 1
 
 Bundle 'vim-scripts/taglist.vim'
+Bundle 'tpope/vim-rsi'
+Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'julienr/vimux-pyutils'
+Bundle 'benmills/vimux'
 Bundle 'ivyl/vim-bling'
 Bundle 'ivanov/ipython-vimception'
 Bundle 'jmcantrell/vim-virtualenv'
@@ -226,10 +235,10 @@ function! WebSearch(term)
     call OpenBrowser(l:url)
 endfunction
 
-map <C-H> <C-W>h<C-W>_
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-L> <C-W>l<C-W>_
+"map <C-H> <C-W>h<C-W>_
+"map <C-J> <C-W>j<C-W>_
+"map <C-K> <C-W>k<C-W>_
+"map <C-L> <C-W>l<C-W>_
 map <Leader>ts :set spell! spelllang=en_us<CR>
 map <Leader>sv :source ~/.vimrc<CR>   
 map <Leader>ev :e ~/.vimrc<CR>
@@ -316,3 +325,4 @@ au BufRead,BufNewFile *.ipy set filetype=python
 "hi clear SpellBad
 "hi SpellBad term=reverse ctermbg=Yellow gui=undercurl guisp=Yellow
 colorscheme gardener
+

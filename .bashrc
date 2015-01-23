@@ -41,9 +41,10 @@ export HISTFILESIZE="nnnnnn..."
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-export EDITOR=vim
+export EDITOR="vim --servername VIM"
 
-alias editor=vim
+alias vim="vim --servername VIM"
+alias editor="vim --servername VIM"
 alias pager=less
 
 if [ -e ~/.bashrc.local ] ; then
