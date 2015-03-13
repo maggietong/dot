@@ -1,5 +1,5 @@
 
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
 
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 

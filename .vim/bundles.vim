@@ -1,4 +1,11 @@
 call vundle#rc()
+
+Plugin 'simplyzhao/cscope_maps.vim'
+Plugin 'autoload_cscope.vim'
+Plugin 'Keithbsmiley/swift.vim'
+
+"Plugin 'vivien/vim-addon-linux-coding-style'
+
 Plugin 'gmarik/vundle'
 Plugin 'thinca/vim-singleton'
 let g:ycm_path_to_python_interpreter = GetRealPythonExecutablePath()
@@ -6,6 +13,7 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_collect_identifiers_from_tags_files = 0
 let g:ycm_cache_omnifunc = 0
 let g:ycm_server_keep_logfiles = 1
+
 Plugin 'python-rope/ropevim'
 let ropevim_extended_complete=1
 let ropevim_vim_completion=1
@@ -41,14 +49,14 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'julienr/vimux-pyutils'
 Plugin 'benmills/vimux'
 Plugin 'ivyl/vim-bling'
-"Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'tpope/vim-fugitive'
-Plugin 'eldridgejm/tslime_ipython'
+"Plugin 'eldridgejm/tslime_ipython'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'qualiabyte/vim-colorstepper'
+"Plugin 'qualiabyte/vim-colorstepper'
 Plugin 'syngan/vim-vimlint'
 Plugin 'ynkdir/vim-vimlparser'
-"Plugin 'jsatt/python_fn'
+Plugin 'jsatt/python_fn'
 Plugin 'vim-scripts/python_match.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jamessan/vim-gnupg'
@@ -67,7 +75,7 @@ let g:pymode_lint_cwindow = 1
 let g:pymode_lint_ignore = 'E501,W'
 let g:pymode_lint_message = 0
 let g:pymode_lint_on_fly = 0
-let g:pymode_lint_on_write = 1
+let g:pymode_lint_on_write = 0
 let g:pymode_options_max_line_length = 119
 let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length, }
 let g:pymode_lint_unmodified = 0

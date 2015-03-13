@@ -1,3 +1,4 @@
+
 source ~/.vim/util.vim
 call g:AddPythonPath('~/.vim/bundle/ropevim')
 let defaultvirtualenv = $VIRTUAL_ENV
@@ -20,6 +21,7 @@ augroup NoSimultaneousEdits
     autocmd SwapExists * :let v:swapchoice = 'q'
 augroup END
 
+autocmd BufRead,BufNewFile *.swift setfiletype swift
 
 set t_Co=256
 "set t_AB=^[[48;5;%dm
@@ -157,7 +159,8 @@ function! MyReadonly()
 endfunction
 
 function! MyFugitive()
-  return exists('*fugitive#head') ? fugitive#head() : ''
+  "return exists('*fugitive#head') ? fugitive#head() : ''
+  return ''
 endfunction
 
 highlight Folded ctermbg=0
@@ -216,6 +219,8 @@ function! AskQuit (msg, proposed_action)
         exit
     endif
 endfunction
+
+nnoremap <silent> <buffer> q :lclose \| pclose <CR>
 
 "let $PATH = 'blahblah:/usr/local/Cellar/reattach-to-user-namespace/2.3/bin' 
 "vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>

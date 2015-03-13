@@ -18,6 +18,7 @@ ctags
 BUILDTIME
 /dist/
 /*.egg-info/
+/*.eggs/
 .figleaf
 /trash/
 .ipython/profile_default/static
