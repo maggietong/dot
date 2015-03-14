@@ -73,6 +73,7 @@ syntax on
 
 set rtp+=~/.vim/plugin
 set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 
 source ~/.vim/bundles.vim
 call singleton#enable()

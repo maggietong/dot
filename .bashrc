@@ -6,18 +6,10 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 #export DISTUTILS_DEBUG=true
 
 if which brew > /dev/null 2>&1 ; then
-    if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-        . $(brew --prefix)/share/bash-completion/bash_completion
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
     fi
 fi
-
-if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ] ; then
-    # https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
-    # FIXME: Why is it not enough just to put this in bash_compl.d ?
-    . /usr/local/etc/bash_completion.d/git-completion.bash
-fi
-
-HISTFILESIZE=99999
 
 if [ -d ~/.bash.d ] ; then
     for f in ~/.bash.d/*.bash ; do
