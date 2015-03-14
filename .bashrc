@@ -1,5 +1,13 @@
 
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
+PATH="/bin:/usr/bin:/usr/sbin:/sbin"
+
+if [ `uname` == "Darwin" ] ; then
+    for P in "/usr/local/sbin" "/usr/local/bin" ; do
+        if [ -d "${P}" ] ; then
+            PATH="${P}:${PATH}"
+        fi
+    done
+fi
 
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
@@ -41,4 +49,12 @@ alias pager=less
 
 if [ -e ~/.bashrc.local ] ; then
     . ~/.bashrc.local
+fi
+
+if [ `uname` == "Darwin" ] ; then
+    PYTHON_VERSION=`python -c 'import sys ; print("%s.%s" % (sys.version_info.major, sys.version_info.minor))'`
+    FRAMEWORK_EXTRAS="/System/Library/Frameworks/Python.framework/Versions/${PYTHON_VERSION}/Extras/lib/python"
+    if [ -d "${FRAMEWORK_EXTRAS}" ] ; then
+        export PYTHONPATH="${FRAMEWORK_EXTRAS}"
+    fi
 fi
