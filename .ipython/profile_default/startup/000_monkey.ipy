@@ -1,0 +1,4 @@
+
+# (re)set the default for %history's "-l"
+from IPython.core.magics.history import HistoryMagics
+HistoryMagics.history.parser.set_defaults(limit=200)

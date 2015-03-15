@@ -1,6 +1,4 @@
 
-PATH="/bin:/usr/bin:/usr/sbin:/sbin"
-
 if [ `uname` == "Darwin" ] ; then
     for P in "/usr/local/sbin" "/usr/local/bin" ; do
         if [ -d "${P}" ] ; then
@@ -8,10 +6,6 @@ if [ `uname` == "Darwin" ] ; then
         fi
     done
 fi
-
-export VIRTUAL_ENV_DISABLE_PROMPT=true
-
-#export DISTUTILS_DEBUG=true
 
 if which brew > /dev/null 2>&1 ; then
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -23,10 +17,6 @@ if [ -d ~/.bash.d ] ; then
     for f in ~/.bash.d/*.bash ; do
         . $f
     done
-fi
-
-if [ -e ~/git/mainline ] ; then
-    cd ~/git/mainline
 fi
 
 if [ -d ~/bin ] ; then
@@ -62,4 +52,8 @@ if [ ! -z "${VIRTUAL_ENV}" ] ; then
             ln -sf "${REAL_PYTHON}" "${NOW_PYTHON}"
         fi
     fi
+fi
+
+if [ -e ~/git/mainline ] ; then
+    cd ~/git/mainline
 fi

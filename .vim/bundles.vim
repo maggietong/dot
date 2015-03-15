@@ -65,6 +65,37 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'klen/python-mode'
 let g:pymode = 1
 let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_cmd = "import pudb; pudb.set_trace()     #import rpdb2; rpdb2.start_embedded_debugger('foo', fAllowRemote=True, timeout=rpdb2.TIMEOUT_FIVE_MINUTES*12) # BREAKPOINT"
+""""""""""
+""
+""  It appears that g:pymode_breakpoint_cmd is *ignored*. Here's a pactch.
+""
+""""""""""
+"#diff --git a/autoload/pymode/breakpoint.vim b/autoload/pymode/breakpoint.vim
+"#index 18e1a95..dabb0fd 100644
+"#--- a/autoload/pymode/breakpoint.vim
+"#+++ b/autoload/pymode/breakpoint.vim
+"#@@ -13,20 +13,6 @@ fun! pymode#breakpoint#init() "{{{
+"#
+"#     endif
+"#
+"#-        PymodePython << EOF
+"#-
+"#-from imp import find_module
+"#-
+"#-for module in ('pudb', 'ipdb'):
+"#-    try:
+"#-        find_module(module)
+"#-        vim.command('let g:pymode_breakpoint_cmd = "import %s; %s.set_trace()  # XXX BREAKPOINT"' % (module, module))
+"#-        break
+"#-    except ImportError:
+"#-        continue
+"#-
+"#-EOF
+"#-
+"# endfunction "}}}
+"#
+"# fun! pymode#breakpoint#operate(lnum) "{{{
 let g:pymode_doc = 1
 let g:pymode_doc_bind = 'K'
 let g:pymode_folding = 0
