@@ -50,11 +50,3 @@ alias pager=less
 if [ -e ~/.bashrc.local ] ; then
     . ~/.bashrc.local
 fi
-
-if [ `uname` == "Darwin" ] ; then
-    PYTHON_VERSION=`python -c 'import sys ; print("%s.%s" % (sys.version_info.major, sys.version_info.minor))'`
-    FRAMEWORK_EXTRAS="/System/Library/Frameworks/Python.framework/Versions/${PYTHON_VERSION}/Extras/lib/python"
-    if [ -d "${FRAMEWORK_EXTRAS}" ] ; then
-        export PYTHONPATH="${FRAMEWORK_EXTRAS}"
-    fi
-fi
