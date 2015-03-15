@@ -47,6 +47,19 @@ alias vim="vim --servername VIM"
 alias editor="vim --servername VIM"
 alias pager=less
 
-if [ -e ~/.bashrc.local ] ; then
-    . ~/.bashrc.local
+function _sum() {
+    sum "$1" | cut -d ' ' -f 1-2
+}
+
+if [ ! -z "${VIRTUAL_ENV}" ] ; then
+    ###  http://wiki.wxpython.org/wxPythonVirtualenvOnMac
+    REAL_PYTHON=`python -c 'import sys, os ; p=sys.real_prefix+"/bin/python" ; print os.path.realpath(p)' 2> /dev/null`
+    if [ ! -z "${REAL_PYTHON}" ] ; then
+        NOW_PYTHON=`python -c 'import sys, os ; p=sys.prefix+"/bin/python" ; print os.path.realpath(p)'`
+        if [ ! -z "${NOW_PYTHON}" ] && [ "`_sum ${REAL_PYTHON}`" != "`_sum ${NOW_PYTHON}`" ] ; then
+            echo "Fixing up your homedir do so that wxpython (and friends) work..."
+            export PYTHONHOME=$VIRTUAL_ENV
+            ln -sf "${REAL_PYTHON}" "${NOW_PYTHON}"
+        fi
+    fi
 fi
