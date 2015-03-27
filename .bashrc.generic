@@ -92,8 +92,10 @@ if which brew > /dev/null 2>&1 ; then
     fi
 fi
 
+# vim +clientserver feature wants an X server
 if which Xvfb > /dev/null 2>&1 && [ `uname` != "Darwin" ] ; then
-    # vim +clientserver feature wants an X server
-    nohup Xvfb :2 -screen 0 1024x768x24 > /dev/null 2>&1 &
+    if [ ! -f /tmp/.X2-lock ] ; then
+        nohup Xvfb :2 -screen 0 1024x768x24 > /dev/null 2>&1 &
+    fi
     export DISPLAY=:2
 fi
