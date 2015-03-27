@@ -91,3 +91,9 @@ if which brew > /dev/null 2>&1 ; then
         . $(brew --prefix)/etc/bash_completion
     fi
 fi
+
+if which Xvfb > /dev/null 2>&1 && [ `uname` != "Darwin" ] ; then
+    # vim +clientserver feature wants an X server
+    nohup Xvfb :2 -screen 0 1024x768x24 > /dev/null 2>&1 &
+    export DISPLAY=:2
+fi
