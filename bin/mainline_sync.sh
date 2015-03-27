@@ -18,7 +18,7 @@ if [ `readlink -f $NFS` == `readlink -f $LOCAL` ] ; then
     exit 1
 fi
 
-CMD="rsync -xva --sparse --delete --specials"
+CMD="rsync -xa --inplace --delete"
 
 if [ "$MODE" == "tonfs" ] ; then
     $CMD "$LOCAL"/ "$NFS"/
