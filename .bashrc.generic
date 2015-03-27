@@ -1,26 +1,32 @@
+export PATH
 
-if [ `uname` == "Darwin" ] ; then
-    for P in "/usr/local/sbin" "/usr/local/bin" ; do
-        if [ -d "${P}" ] ; then
-            PATH="${P}:${PATH}"
-        fi
-    done
-fi
+# uniquify
+PATH=`python -c "import os ; path = os.environ['PATH'].split(':') ; new_path = [] ; [new_path.append(p) for p in path if p not in new_path] ; print ':'.join(new_path)"`
 
-if which brew > /dev/null 2>&1 ; then
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-        . $(brew --prefix)/etc/bash_completion
+path_add() {
+    NEW_PATH="$1"
+    FORCE="${2:-True}"
+    MODE="${3:-append}"
+    if [ $MODE == 'append' ] ; then
+        MODE_ARGS=''
+    else
+        MODE_ARGS='0,'
     fi
-fi
+    PATH=`python -c "import os ; path = os.environ['PATH'].split(':') ; ${FORCE} and '${NEW_PATH}' in path and path.remove('${NEW_PATH}') ; os.path.isdir('${NEW_PATH}') and '${NEW_PATH}' not in path and path.${MODE}(${MODE_ARGS}'${NEW_PATH}') ; print ':'.join(path)"`
+}
+
+path_insert() {
+    path_add "$1" "$2" insert
+}
+
+path_append() {
+    path_add "$1" "$2" append
+}
 
 if [ -d ~/.bash.d ] ; then
     for f in ~/.bash.d/*.bash ; do
         . $f
     done
-fi
-
-if [ -d ~/bin ] ; then
-    PATH=~/bin:"$PATH"
 fi
 
 # Never, ever lose any history!
@@ -41,19 +47,47 @@ function _sum() {
     sum "$1" | cut -d ' ' -f 1-2
 }
 
-if [ ! -z "${VIRTUAL_ENV}" ] ; then
-    ###  http://wiki.wxpython.org/wxPythonVirtualenvOnMac
-    REAL_PYTHON=`python -c 'import sys, os ; p=sys.real_prefix+"/bin/python" ; print os.path.realpath(p)' 2> /dev/null`
-    if [ ! -z "${REAL_PYTHON}" ] ; then
-        NOW_PYTHON=`python -c 'import sys, os ; p=sys.prefix+"/bin/python" ; print os.path.realpath(p)'`
-        if [ ! -z "${NOW_PYTHON}" ] && [ "`_sum ${REAL_PYTHON}`" != "`_sum ${NOW_PYTHON}`" ] ; then
-            echo "Fixing up your homedir do so that wxpython (and friends) work..."
-            export PYTHONHOME=$VIRTUAL_ENV
-            ln -sf "${REAL_PYTHON}" "${NOW_PYTHON}"
+if [ `uname` == "Darwin" ] ; then
+    for P in "/usr/local/sbin" "/usr/local/bin" ; do
+        if [ -d "${P}" ] ; then
+            path_insert "${P}"
         fi
-    fi
+    done
 fi
+
+if [ ! -z "${VIRTUAL_ENV}" ] ; then
+    export PYTHONHOME=$VIRTUAL_ENV
+    #  ###  http://wiki.wxpython.org/wxPythonVirtualenvOnMac
+    #  REAL_PYTHON=`python -c 'import sys, os ; p=sys.real_prefix+"/bin/python" ; print os.path.realpath(p)' 2> /dev/null`
+    #  if [ ! -z "${REAL_PYTHON}" ] ; then
+    #      NOW_PYTHON=`python -c 'import sys, os ; p=sys.prefix+"/bin/python" ; print os.path.realpath(p)'`
+    #      if [ ! -z "${NOW_PYTHON}" ] && [ "`_sum ${REAL_PYTHON}`" != "`_sum ${NOW_PYTHON}`" ] ; then
+    #          echo "Fixing up your homedir do so that wxpython (and friends) work..."
+    #          export PYTHONHOME=$VIRTUAL_ENV
+    #          ln -sf "${REAL_PYTHON}" "${NOW_PYTHON}"
+    #      fi
+    #  fi
+    # make virtualenv/bin come first
+    path_insert "${VIRTUAL_ENV}/bin"
+fi
+
+if [ -d ~/bin ] ; then
+    path_insert ~/bin
+fi
+
 
 if [ -e ~/git/mainline ] ; then
     cd ~/git/mainline
+fi
+
+export LESS='--ignore-case --long-prompt --raw-control-chars'
+
+if [ -f "/etc/bash_completion" ] ; then
+    . /etc/bash_completion
+fi
+
+if which brew > /dev/null 2>&1 ; then
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
 fi
