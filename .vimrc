@@ -228,3 +228,6 @@ nnoremap <silent> <buffer> q :lclose \| pclose <CR>
 "nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 
 "http://vim.wikia.com/wiki/Paste_from_the_clipboard_into_a_new_vim
+
+source ~/.vim/bundle/rainbow/plugin/rainbow.vim
+let g:rainbow_active = 1

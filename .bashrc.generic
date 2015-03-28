@@ -99,3 +99,7 @@ if which Xvfb > /dev/null 2>&1 && [ `uname` != "Darwin" ] ; then
     fi
     export DISPLAY=:2
 fi
+
+if [ -d "/Applications/VMware Fusion.app/Contents/Library" ] ; then
+    path_append "/Applications/VMware Fusion.app/Contents/Library"
+fi

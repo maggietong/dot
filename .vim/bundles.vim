@@ -62,6 +62,11 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'luochen1990/rainbow'
+" Disable auto-pairs. It's mostly just for scheme
+let g:AutoPairsLoaded = 1
+let g:AutoPairs = {}
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'klen/python-mode'
 let g:pymode = 1
 let g:pymode_breakpoint = 1

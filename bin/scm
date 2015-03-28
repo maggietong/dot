@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -ue
+
+if [ "${1:-}" == "-c" ] ; then
+    MODE=batch
+    shift
+    SCRIPT="$1"
+    shift
+else
+    MODE=interactive
+fi
+
+if [ "${MODE}" == "batch" ] ; then
+    scheme --quiet --batch-mode "$@" < "$SCRIPT"
+elif [ "${MODE}" == "interactive" ] ; then
+    rlwrap -r -c -f ~/git/stnbu/dot/mit_scheme_bindings.txt scheme "$@"
+else
+    >2& echo `basename $0`" [-c <filepath>]<options ...>"
+    exit 1
+fi
