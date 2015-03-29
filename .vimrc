@@ -231,3 +231,10 @@ nnoremap <silent> <buffer> q :lclose \| pclose <CR>
 
 source ~/.vim/bundle/rainbow/plugin/rainbow.vim
 let g:rainbow_active = 1
+
+" irkin
+au BufRead,BufNewFile *.ikn set filetype=irken
+
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
