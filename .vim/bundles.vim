@@ -63,6 +63,7 @@ Plugin 'jamessan/vim-gnupg'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'gerw/vim-HiLinkTrace'
+Plugin 'sfiera/vim-emacsmodeline'
 Plugin 'luochen1990/rainbow'
 " Disable auto-pairs. It's mostly just for scheme
 let g:AutoPairsLoaded = 1
